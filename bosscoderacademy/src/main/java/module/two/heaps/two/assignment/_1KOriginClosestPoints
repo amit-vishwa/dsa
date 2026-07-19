@@ -1,0 +1,80 @@
+package module.two.heaps.two.assignment;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+public class _1KOriginClosestPoints {
+
+    private static List<List<Integer>> input1() {
+        return new ArrayList<>(List.of(List.of(1, 3), List.of(-2, 2)));
+    }
+
+    private static List<List<Integer>> input2() {
+        return new ArrayList<>(List.of(List.of(3, 3), List.of(5, -1), List.of(-2, 4)));
+    }
+
+    public static void main(String[] args) {
+        printKClosestPoints(input1(), 1);
+        printKClosestPoints(input2(), 2);
+    }
+
+    private static void printKClosestPoints(List<List<Integer>> points, int k) {
+//        System.out.println(k + " closest points by approach 1: " + approach1(points, k));
+//        System.out.println(k + " closest points by approach 2: " + approach2(points, k));
+        System.out.println(k + " closest points by approach 3: " + approach3(points, k));
+        System.out.println();
+    }
+
+    private static List<List<Integer>> approach1(List<List<Integer>> points, int k) {
+        List<List<Integer>> kClosestPoints = new ArrayList<>();
+        for (int i = 0; i < points.size() - 1; i++) {
+            boolean isSwapped = false;
+            for (int j = i + 1; j < points.size(); j++) {
+                int num1 = (points.get(j - 1).get(0) * points.get(j - 1).get(0)) + (points.get(j - 1).get(1) * points.get(j - 1).get(1));
+                int num2 = (points.get(j).get(0) * points.get(j).get(0)) + (points.get(j).get(1) * points.get(j).get(1));
+                if (num1 > num2) {
+                    List<Integer> temp = points.get(j - 1);
+                    points.set(j - 1, points.get(j));
+                    points.set(j, temp);
+                    isSwapped = true;
+                }
+            }
+            if (!isSwapped) {
+                break;
+            }
+        }
+        for (int i = 0; i < k; i++) {
+            kClosestPoints.add(points.get(i));
+        }
+        return kClosestPoints;
+    }
+
+    private static List<List<Integer>> approach2(List<List<Integer>> points, int k) {
+        List<List<Integer>> kClosestPoints = new ArrayList<>();
+        points.sort((point1, point2) -> (point1.get(0) * point1.get(0) + point1.get(1) * point1.get(1)) - (point2.get(0) * point2.get(0) + point2.get(1) * point2.get(1)));
+        for (int i = 0; i < k; i++) {
+            kClosestPoints.add(points.get(i));
+        }
+        return kClosestPoints;
+    }
+
+    private static List<List<Integer>> approach3(List<List<Integer>> points, int k) {
+        List<List<Integer>> kClosestPoints = new ArrayList<>();
+        PriorityQueue<List<Integer>> maxPQ = new PriorityQueue<>((p1, p2) -> (p2.get(0) * p2.get(0) + p2.get(1) * p2.get(1)) - (p1.get(0) * p1.get(0) + p1.get(1) * p1.get(1)));
+        for (List<Integer> point : points) {
+            maxPQ.offer(point);
+            if (maxPQ.size() > k) {
+                maxPQ.poll();
+            }
+        }
+        for (int i = 0; i < k; i++) {
+            kClosestPoints.add(new ArrayList<>());
+        }
+        for (int i = k - 1; i >= 0; i--) {
+            kClosestPoints.set(i, maxPQ.poll());
+        }
+        return kClosestPoints;
+    }
+
+}

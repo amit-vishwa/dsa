@@ -1,0 +1,22 @@
+package module.two.trees.assignment;
+
+import module.two.trees.Node;
+import module.two.trees.BinaryTree;
+
+public class _10PathSum {
+
+    public static void main(String[] args) {
+        System.out.println("Is path sum exist? " + pathSum(BinaryTree.createDummyTree(), 19));
+        System.out.println("Is path sum exist? " + pathSum(BinaryTree.createDummyTree(), 220));
+        System.out.println("Is path sum exist? " + pathSum(BinaryTree.createDummyTree(), 10));
+        System.out.println("Is path sum exist? " + pathSum(BinaryTree.createDummyTree(), 41));
+    }
+
+    private static boolean pathSum(Node root, int target) {
+        if (root == null) {
+            return target == 0;
+        }
+        return pathSum(root.left, target - root.data) || pathSum(root.right, target - root.data);
+    }
+
+}

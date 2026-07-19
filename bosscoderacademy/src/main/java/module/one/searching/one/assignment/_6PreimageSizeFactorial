@@ -1,0 +1,36 @@
+package module.one.searching.one.assignment;
+
+public class _6PreimageSizeFactorial {
+
+    public static void main(String[] args) {
+        System.out.println(numbersWithKTrailingZeroes(0));
+        System.out.println(numbersWithKTrailingZeroes(5));
+    }
+
+    private static int numbersWithKTrailingZeroes(int k) {
+        int l = 0, r = 6 * k;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            int zeroes = trailingZeroes(m);
+            if (zeroes == k) {
+                return 5;
+            }
+            if (zeroes < k) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+        return 0;
+    }
+
+    private static int trailingZeroes(int num) {
+        int zeroes = 0;
+        while (num > 0) {
+            num /= 5;
+            zeroes += num;
+        }
+        return zeroes;
+    }
+
+}

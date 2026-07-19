@@ -1,0 +1,104 @@
+package module.two.hashing.two.assignment;
+
+import java.util.HashMap;
+
+public class _2MinimumWindowSubstring {
+
+    public static void main(String[] args) {
+        printMinimumSubstring("ADOBECODEBANC", "ABC");
+        printMinimumSubstring("a", "a");
+    }
+
+    private static void printMinimumSubstring(String s, String t) {
+        System.out.println("Minimum window substring by approach 1: " + approach1(s, t));
+        System.out.println("Minimum window substring by approach 2: " + approach2(s, t));
+        System.out.println();
+    }
+
+    private static String approach1(String s, String t) {
+        int sLen = s.length(), tLen = t.length();
+        if (sLen < tLen) {
+            return "";
+        }
+        HashMap<Character, Integer> tCharMap = new HashMap<>();
+        for (char ch : t.toCharArray()) {
+            tCharMap.put(ch, tCharMap.getOrDefault(ch, 0) + 1);
+        }
+        int left = 0, remainingChars = tLen;
+        int[] minWindow = {0, sLen};
+        for (int right = 0; right < sLen; right++) {
+            char curChar = s.charAt(right);
+            // increasing window
+            if (tCharMap.containsKey(curChar) && tCharMap.get(curChar) > 0) {
+                remainingChars--;
+            }
+            tCharMap.put(curChar, tCharMap.getOrDefault(curChar, 0) - 1);
+            // valid window
+            if (remainingChars == 0) {
+                while (true) {
+                    curChar = s.charAt(left);
+                    if (tCharMap.get(curChar) == 0) {
+                        break;
+                    }
+                    tCharMap.put(curChar, tCharMap.getOrDefault(curChar, 0) + 1);
+                    left++;
+                }
+                // update window
+                if (right - left < minWindow[1] - minWindow[0]) {
+                    minWindow[0] = left;
+                    minWindow[1] = right;
+                }
+                // resetting for other windows
+                curChar = s.charAt(left);
+                tCharMap.put(curChar, tCharMap.getOrDefault(curChar, 0) + 1);
+                remainingChars++;
+                left++;
+            }
+        }
+        return minWindow[1] == sLen ? "" : s.substring(minWindow[0], minWindow[1] + 1);
+    }
+
+    private static String approach2(String s, String t) {
+        int sLen = s.length(), tLen = t.length();
+        if (sLen < tLen) {
+            return "";
+        }
+        int[] tChars = new int[58];
+        for (char ch : t.toCharArray()) {
+            tChars[ch - 'A']++;
+        }
+        int left = 0, remainingChars = tLen;
+        int[] minWindow = {0, sLen};
+        for (int right = 0; right < sLen; right++) {
+            char curChar = s.charAt(right);
+            // increasing window
+            if (tChars[curChar - 'A'] > 0) {
+                remainingChars--;
+            }
+            tChars[curChar - 'A']--;
+            // valid window
+            if (remainingChars == 0) {
+                while (true) {
+                    curChar = s.charAt(left);
+                    if (tChars[curChar - 'A'] == 0) {
+                        break;
+                    }
+                    tChars[curChar - 'A']++;
+                    left++;
+                }
+                // update window
+                if (right - left < minWindow[1] - minWindow[0]) {
+                    minWindow[0] = left;
+                    minWindow[1] = right;
+                }
+                // resetting for other windows
+                curChar = s.charAt(left);
+                tChars[curChar - 'A']++;
+                remainingChars++;
+                left++;
+            }
+        }
+        return minWindow[1] >= sLen ? "" : s.substring(minWindow[0], minWindow[1] + 1);
+    }
+
+}

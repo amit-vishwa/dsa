@@ -1,0 +1,39 @@
+package module.one.maths.one.assignment;
+
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class _2SelfDividingNumbers {
+
+    public static void main(String[] args) {
+        System.out.println("Self dividing numbers: " + Arrays.toString(selfDividingNumbers(1, 22)));
+        System.out.println("Self dividing numbers: " + Arrays.toString(selfDividingNumbers(47, 85)));
+    }
+
+    private static int[] selfDividingNumbers(int left, int right) {
+        ArrayList<Integer> selfDividingNumberList = new ArrayList<>();
+        for (int num = left; num <= right; num++) {
+            if (isSelfDividingNumber(num)) {
+                selfDividingNumberList.add(num);
+            }
+        }
+        int[] selfDividingNumberArray = new int[selfDividingNumberList.size()];
+        for (int i = 0; i < selfDividingNumberList.size(); i++) {
+            selfDividingNumberArray[i] = selfDividingNumberList.get(i);
+        }
+        return selfDividingNumberArray;
+    }
+
+    private static boolean isSelfDividingNumber(int number) {
+        int num = number;
+        while (num > 0) {
+            int remainder = num % 10;
+            if (remainder == 0 || number % remainder != 0) {
+                return false;
+            }
+            num /= 10;
+        }
+        return true;
+    }
+
+}

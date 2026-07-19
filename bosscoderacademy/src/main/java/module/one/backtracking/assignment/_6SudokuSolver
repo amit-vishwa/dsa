@@ -1,0 +1,84 @@
+package module.one.backtracking.assignment;
+
+public class _6SudokuSolver {
+
+    public static void main(String[] args) {
+        solveSudoku(new char[][]{
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        });
+    }
+
+    private static void solveSudoku(char[][] board) {
+        if (solve(board, 0, 0)) {
+            printBoard(board);
+        }
+    }
+
+    private static boolean solve(char[][] board, int row, int col) {
+        if (col == 9) {
+            col = 0;
+            row++;
+        }
+        if (row == 9) {
+            return true;
+        }
+        if (board[row][col] == '.') {
+            for (char num = '1'; num <= '9'; num++) {
+                if (isPossible(board, row, col, num)) {
+                    board[row][col] = num;
+                    if (solve(board, row, col + 1)) {
+                        return true;
+                    }
+                    board[row][col] = '.';
+                }
+            }
+            return false;
+        }
+        return solve(board, row, col + 1);
+    }
+
+    private static boolean isPossible(char[][] board, int row, int col, char num) {
+        for (int r = 0; r < 9; r++) {
+            if (board[r][col] == num) {
+                return false;
+            }
+        }
+        for (int c = 0; c < 9; c++) {
+            if (board[row][c] == num) {
+                return false;
+            }
+        }
+        int rS = row / 3 * 3, cS = col / 3 * 3;
+        for (int r = rS; r < rS + 3; r++) {
+            for (int c = cS; c < cS + 3; c++) {
+                if (board[r][c] == num) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void printBoard(char[][] board) {
+        for (char[] row : board) {
+            System.out.print("[ ");
+            for (int col = 0; col < row.length; col++) {
+                System.out.print(row[col]);
+                if (col < row.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println(" ]");
+        }
+        System.out.println();
+    }
+
+}

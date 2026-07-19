@@ -1,0 +1,38 @@
+package module.one._1d_and_2d_array.assignment;
+
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class _12RearrangeNegativeAlternatively {
+
+    public static void main(String[] args) {
+        System.out.println("Sorted array: " + Arrays.toString(sort(new int[]{1, 2, 3, -4, -1, 4})));
+        System.out.println("Sorted array: " + Arrays.toString(sort(new int[]{-5, -2, 5, 2, 4, 7, 1, 8, 0, -8})));
+    }
+
+    private static int[] sort(int[] input) {
+        ArrayList<Integer> posList = new ArrayList<>();
+        ArrayList<Integer> negList = new ArrayList<>();
+        for (int num : input) {
+            if (num < 0) {
+                negList.add(num);
+            } else {
+                posList.add(num);
+            }
+        }
+        int[] sorted = new int[posList.size() + negList.size()];
+        int i = 0, j = 0, k = 0;
+        while (i < posList.size() && j < negList.size()) {
+            // here, value of k is getting updated first hence odd even is reversed
+            sorted[k++] = k % 2 != 0 ? negList.get(j++) : posList.get(i++);
+        }
+        while (i < posList.size()) {
+            sorted[k++] = posList.get(i++);
+        }
+        while (j < negList.size()) {
+            sorted[k++] = negList.get(j++);
+        }
+        return sorted;
+    }
+
+}

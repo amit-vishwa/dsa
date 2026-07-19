@@ -1,0 +1,56 @@
+package module.one.maths.two.assignment;
+
+public class _5NthMagicalNumber {
+
+    public static void main(String[] args) {
+        printNthMagicalNumber(1, 2, 3);
+        printNthMagicalNumber(4, 2, 3);
+    }
+
+    private static void printNthMagicalNumber(int n, int a, int b) {
+        System.out.println(n + "th magical number by approach 1: " + approach1(n, a, b));
+        System.out.println(n + "th magical number by approach 2: " + approach2(n, a, b));
+        System.out.println();
+    }
+
+    private static int approach1(int n, int a, int b) {
+        int count = 1;
+        int num = Math.min(a, b);
+        while (count < n) {
+            num++;
+            if (num % a == 0 || num % b == 0) {
+                count++;
+            }
+        }
+        return num;
+    }
+
+    private static int approach2(int n, int a, int b) {
+        long low = Math.min(a, b);
+        long high = low * n;
+        while (low < high) {
+            long mid = low + (high - low) / 2;
+            long num = (mid / a) + (mid / b) + (mid / lcm(a, b));
+            if (num < n) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return (int) (high % (int) (Math.pow(10, 9) + 7));
+    }
+
+    private static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
+
+    private static int gcd(int a, int b) {
+        while (a > 0) {
+            int temp = a;
+            a = b % a;
+            b = temp;
+        }
+        return b;
+    }
+
+}

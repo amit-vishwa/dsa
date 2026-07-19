@@ -1,0 +1,31 @@
+package module.one.maths.one.assignment;
+
+public class _1GcdArray {
+
+    public static void main(String[] args) {
+        System.out.println("Gcd: " + gcd(new int[]{2, 5, 6, 9, 10}));
+        System.out.println("Gcd: " + gcd(new int[]{7, 5, 6, 8, 3}));
+    }
+
+    private static int gcd(int[] arr) {
+        int n = arr.length;
+        if (n == 0) {
+            return -1;
+        }
+        if (n == 1) {
+            return arr[0];
+        }
+        int num1 = Integer.MAX_VALUE;
+        int num2 = Integer.MIN_VALUE;
+        for (int num : arr) {
+            num1 = Math.min(num1, num);
+            num2 = Math.max(num2, num);
+        }
+        while (num1 > 0) {
+            int temp = num1;
+            num1 = num2 % num1;
+            num2 = temp;
+        }
+        return num2;
+    }
+}

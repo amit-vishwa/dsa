@@ -1,0 +1,28 @@
+package module.one.bit_manipulation.assignment;
+
+import java.util.Arrays;
+
+public class _9SingleNumberIII {
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(distinctNumbers(new int[]{1, 1, 2, 2, 3, 4})));
+    }
+
+    private static int[] distinctNumbers(int[] arr) {
+        int xor = 0;
+        for (int n : arr) {
+            xor ^= n;
+        }
+        int firstSetBit = xor & ~(xor - 1);
+        int first = 0, second = 0;
+        for (int n : arr) {
+            if ((n & firstSetBit) == 1) {
+                first ^= n;
+            } else {
+                second ^= n;
+            }
+        }
+        return new int[]{first, second};
+    }
+
+}

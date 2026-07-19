@@ -1,0 +1,54 @@
+package module.two.bbst.assignment;
+
+import module.two.bst.Node;
+
+import java.util.Queue;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+// Refer _3RightSideView.java from package module.two.trees.two.lecture.
+public class _2BTRightSideView {
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.left.right = new Node(5);
+        root.right = new Node(3);
+        root.right.right = new Node(4);
+        System.out.println("Right side view of binary tree: " + Arrays.toString(rightView(root)));
+
+        root = new Node(1);
+        root.left = new Node(2);
+        root.left.left = new Node(4);
+        root.left.left.left = new Node(5);
+        root.right = new Node(3);
+        System.out.println("Right side view of binary tree: " + Arrays.toString(rightView(root)));
+    }
+
+    private static int[] rightView(Node root) {
+        if (root == null) {
+            return new int[0];
+        }
+        ArrayList<Integer> rightNodeDataList = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 1; i <= size; i++) {
+                Node node = queue.poll();
+                if (i == size) {
+                    rightNodeDataList.add(node.data);
+                }
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+        return rightNodeDataList.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+}

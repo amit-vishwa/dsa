@@ -1,0 +1,34 @@
+package module.two.linkedlist.one.assignment;
+
+import module.two.linkedlist.Node;
+import module.two.linkedlist.ListNode;
+
+// Refer _2RemoveLastNthNode.java from package module.two.linkedlist.one.lecture.
+public class _3RemoveLastNthNode {
+
+    public static void main(String[] args) {
+        printUpdatedList(new ListNode().convertToLL(new int[]{1, 2, 3, 4, 5}), 2);
+        printUpdatedList(new ListNode().convertToLL(new int[]{1, 2}), 1);
+        printUpdatedList(new ListNode().convertToLL(new int[]{1, 2}), 2);
+        printUpdatedList(new ListNode().convertToLL(new int[]{1, 2}), 0);
+    }
+
+    private static void printUpdatedList(Node head, int n) {
+        Node start = new Node();
+        start.next = head;
+        Node slow = start, fast = start;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+        while (fast != null && fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        if (slow.next != null) {
+            slow.next = slow.next.next;
+        }
+        ListNode.display(start.next);
+        System.out.println();
+    }
+
+}

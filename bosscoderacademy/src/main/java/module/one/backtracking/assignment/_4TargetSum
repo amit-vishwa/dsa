@@ -1,0 +1,23 @@
+package module.one.backtracking.assignment;
+
+public class _4TargetSum {
+
+    public static void main(String[] args) {
+        printCount(new int[]{1, 1, 1, 1, 1}, 3);
+        printCount(new int[]{1}, 1);
+    }
+
+    private static void printCount(int[] nums, int target) {
+        System.out.println("Expressions count: " + expressionCount(nums, target, 0));
+    }
+
+    private static int expressionCount(int[] nums, int target, int index) {
+        if (index == nums.length) {
+            return target == 0 ? 1 : 0;
+        }
+        int count = expressionCount(nums, target - nums[index], index + 1);
+        count += expressionCount(nums, target + nums[index], index + 1);
+        return count;
+    }
+
+}

@@ -1,0 +1,65 @@
+package module.one.maths.two.notes;
+
+public class _4AllPrimeNumbers {
+
+    public static void main(String[] args) {
+        printAllPrimeNumbers(10);
+        printAllPrimeNumbers(100);
+        printAllPrimeNumbers(101);
+        printAllPrimeNumbers(1051);
+        printAllPrimeNumbers(1053);
+    }
+
+    private static void printAllPrimeNumbers(int n) {
+        approach1(n);
+        approach2(n);
+        System.out.println();
+    }
+
+    private static void approach1(int n) {
+        System.out.print("Approach 1: Prime numbers till " + n + ": ");
+        for (int i = 1; i <= n; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        if (n == 2 || n == 3) {
+            return true;
+        }
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || (n % (i + 2) == 0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void approach2(int n) {
+        boolean[] visited = new boolean[n + 1];
+        for (int i = 2; i * i <= n; i++) {
+            if (!visited[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    visited[j] = true;
+                }
+            }
+        }
+        System.out.print("Approach 2: Prime numbers till " + n + ": ");
+        for (int i = 2; i <= n; i++) {
+            if (!visited[i]) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+}

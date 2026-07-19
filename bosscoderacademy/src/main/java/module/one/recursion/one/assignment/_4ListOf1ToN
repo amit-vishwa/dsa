@@ -1,0 +1,46 @@
+package module.one.recursion.one.assignment;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class _4ListOf1ToN {
+
+    public static void main(String[] args) {
+        printNumbers(5);
+        printNumbers(2);
+        printNumbers(10);
+    }
+
+    private static void printNumbers(int num) {
+        System.out.println(numberList(num));
+        System.out.println(Arrays.toString(numbers(num)));
+        System.out.println();
+    }
+
+    private static ArrayList<Integer> numberList(int num) {
+        if (num == 1) {
+            ArrayList<Integer> number = new ArrayList<>();
+            number.add(num);
+            return number;
+        }
+        ArrayList<Integer> numbers = numberList(num - 1);
+        numbers.add(num);
+        return numbers;
+    }
+
+    private static int[] numbers(int num) {
+        int[] res = new int[num];
+        helper(res, num);
+        return res;
+    }
+
+    private static void helper(int[] res, int num) {
+        if (num == 1) {
+            res[num - 1] = num;
+            return;
+        }
+        helper(res, num - 1);
+        res[num - 1] = num;
+    }
+
+}

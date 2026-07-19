@@ -1,0 +1,20 @@
+package module.two.greedy.assignment;
+
+import java.util.HashSet;
+
+public class _5DistributeCandies {
+
+    public static void main(String[] args) {
+        System.out.println("Alice can eat only " + maxCandies(new int[]{1, 1, 2, 2, 3, 3}) + " candies");
+        System.out.println("Alice can eat only " + maxCandies(new int[]{1, 1, 2, 3}) + " candies");
+    }
+
+    private static int maxCandies(int[] candies) {
+        HashSet<Integer> unique = new HashSet<>();
+        for (int candy : candies) {
+            unique.add(candy);
+        }
+        return Math.min(unique.size(), candies.length / 2);
+    }
+
+}

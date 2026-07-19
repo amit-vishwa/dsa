@@ -1,0 +1,25 @@
+package module.two.bbst.assignment;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class _1QueueByHeight {
+
+    public static void main(String[] args) {
+        List<List<Integer>> queue = new ArrayList<>(List.of(List.of(7, 0), List.of(4, 4), List.of(7, 1), List.of(5, 0),
+                List.of(6, 1), List.of(5, 2)));
+        System.out.println("Queue by height: " + queueByHeight(queue));
+    }
+
+    private static List<List<Integer>> queueByHeight(List<List<Integer>> queue) {
+        queue.sort((person1, person2) -> (!person1.get(0).equals(person2.get(0))) ? person2.get(0) - person1.get(0) :
+                person1.get(1) - person2.get(1));
+        System.out.println(queue);
+        List<List<Integer>> queueByHeight = new ArrayList<>();
+        for (List<Integer> person : queue) {
+            queueByHeight.add(person.get(1), person);
+        }
+        return queueByHeight;
+    }
+
+}

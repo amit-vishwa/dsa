@@ -1,0 +1,47 @@
+package module.one.exams.milestone;
+
+import java.util.ArrayList;
+
+public class _6SumOfPowers {
+
+    public static void main(String[] args) {
+        printWays(10, 2);
+        printWays(4, 1);
+    }
+
+    private static void printWays(int n, int x) {
+        ArrayList<Integer> powers = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            int power = binaryExponentiation(i, x);
+            if (power > n) {
+                break;
+            }
+            powers.add(power);
+        }
+        int ways = exploreWays(powers, n, 0);
+        System.out.println("Number of ways the integer can be expressed as sum of powers: " + ways);
+    }
+
+    private static int binaryExponentiation(int num, int power) {
+        if (power == 0) {
+            return 1;
+        }
+        int result = binaryExponentiation(num, power / 2);
+        return (power & 1) == 0 ? result * result : result * result * num;
+    }
+
+    private static int exploreWays(ArrayList<Integer> powers, int target, int index) {
+        if (target == 0) {
+            return 1;
+        }
+        if (index == powers.size() || target < 0) {
+            return 0;
+        }
+        int ways = exploreWays(powers, target, index + 1);
+        if (powers.get(index) <= target) {
+            ways += exploreWays(powers, target - powers.get(index), index + 1);
+        }
+        return ways;
+    }
+
+}

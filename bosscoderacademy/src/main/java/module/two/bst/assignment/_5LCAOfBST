@@ -1,0 +1,37 @@
+package module.two.bst.assignment;
+
+import module.two.bst.Node;
+
+public class _5LCAOfBST {
+
+    public static void main(String[] args) {
+        Node root = new Node(6);
+        root.left = new Node(2);
+        root.left.left = new Node(0);
+        root.left.right = new Node(4);
+        root.left.right.left = new Node(3);
+        root.left.right.right = new Node(5);
+        root.right = new Node(8);
+        root.right.left = new Node(7);
+        root.right.right = new Node(9);
+        System.out.println("Lowest Common Ancestor of BST: " + lowestCommonAncestor(root, 2, 8));
+        System.out.println("Lowest Common Ancestor of BST: " + lowestCommonAncestor(root, 2, 4));
+        System.out.println("Lowest Common Ancestor of BST: " + lowestCommonAncestor(root, 0, 5));
+    }
+
+    private static int lowestCommonAncestor(Node root, int p, int q) {
+        if (root == null) {
+            return -1;
+        }
+        if (root.data == p || root.data == q) {
+            return root.data;
+        }
+        int left = lowestCommonAncestor(root.left, p, q);
+        int right = lowestCommonAncestor(root.right, p, q);
+        if (left != -1 && right != -1) {
+            return root.data;
+        }
+        return left != -1 ? left : right;
+    }
+
+}

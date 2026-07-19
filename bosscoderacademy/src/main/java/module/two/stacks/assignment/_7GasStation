@@ -1,0 +1,24 @@
+package module.two.stacks.assignment;
+
+public class _7GasStation {
+
+    public static void main(String[] args) {
+        System.out.println("Starting gas station: " + startGasStationIndex(new int[]{1, 2, 3, 4, 5}, new int[]{3, 4, 5, 1, 2}));
+        System.out.println("Starting gas station: " + startGasStationIndex(new int[]{2, 3, 4}, new int[]{3, 4, 3}));
+    }
+
+    private static int startGasStationIndex(int[] gas, int[] cost) {
+        int totalGas = 0, totalCost = 0, curGas = 0, startIndex = 0;
+        for (int i = 0; i < gas.length; i++) {
+            totalGas += gas[i];
+            totalCost += cost[i];
+            curGas += gas[i] - cost[i];
+            if (curGas < 0) {
+                startIndex = i + 1;
+                curGas = 0;
+            }
+        }
+        return totalGas < totalCost ? -1 : startIndex;
+    }
+
+}

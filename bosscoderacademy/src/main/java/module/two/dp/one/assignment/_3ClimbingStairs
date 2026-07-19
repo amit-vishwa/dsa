@@ -1,0 +1,80 @@
+package module.two.dp.one.assignment;
+
+public class _3ClimbingStairs {
+
+    public static void main(String[] args) {
+        printDistinctWaysToClimb(2);
+        printDistinctWaysToClimb(3);
+    }
+
+    private static void printDistinctWaysToClimb(int steps) {
+        System.out.println("Distinct ways to climb using recursion: " + approach1(steps));
+        System.out.println("Distinct ways to climb using memoization: " + approach2(steps));
+        System.out.println("Distinct ways to climb using tabulation: " + approach3(steps));
+        System.out.println("Distinct ways to climb using space optimization: " + approach4(steps));
+        System.out.println();
+    }
+
+    private static int approach1(int steps) {
+        return recursion(steps, 0);
+    }
+
+    private static int recursion(int steps, int curStep) {
+        if (curStep > steps) {
+            return 0;
+        }
+        if (curStep == steps) {
+            return 1;
+        }
+        return recursion(steps, curStep + 1) + recursion(steps, curStep + 2);
+    }
+
+    private static int approach2(int steps) {
+        int[] dp = new int[steps + 1];
+        for (int i = 0; i <= steps; i++) {
+            dp[i] = -1;
+        }
+        return memoization(steps, 0, dp);
+    }
+
+    private static int memoization(int steps, int curStep, int[] dp) {
+        if (curStep > steps) {
+            return 0;
+        }
+        if (curStep == steps) {
+            return 1;
+        }
+        if (dp[curStep] != -1) {
+            return dp[curStep];
+        }
+        dp[curStep] = memoization(steps, curStep + 1, dp) + memoization(steps, curStep + 2, dp);
+        return dp[curStep];
+    }
+
+    private static int approach3(int steps) {
+        int[] dp = new int[steps + 1];
+        dp[steps] = 1;
+        for (int i = steps - 1; i >= 0; i--) {
+            dp[i] += dp[i + 1];
+            if (i + 1 < steps) {
+                dp[i] += dp[i + 2];
+            }
+        }
+        return dp[0];
+    }
+
+    private static int approach4(int steps) {
+        int next = 1;
+        int nextOfNext = 0;
+        for (int i = steps - 1; i >= 0; i--) {
+            int curStep = next;
+            if (i + 1 < steps) {
+                curStep += nextOfNext;
+            }
+            nextOfNext = next;
+            next = curStep;
+        }
+        return next;
+    }
+
+}

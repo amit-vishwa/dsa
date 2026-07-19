@@ -1,0 +1,53 @@
+package module.one.searching.one.assignment;
+
+public class _5DivideTwoIntegers {
+
+    public static void main(String[] args) {
+        printQuotient(10, 3);
+        printQuotient(7, -3);
+    }
+
+    private static void printQuotient(int dividend, int divisor) {
+        System.out.println("Quotient by approach 1: " + approach1(dividend, divisor));
+        System.out.println("Quotient by approach 2: " + approach2(dividend, divisor));
+        System.out.println();
+    }
+
+    private static int approach1(int dividend, int divisor) {
+        int quotient = 0, div = Math.abs(divisor);
+        while (div <= Math.abs(dividend)) {
+            quotient++;
+            div += Math.abs(divisor);
+        }
+        return divisor >= 0 ? quotient : -quotient;
+    }
+
+    private static int approach2(int dividend, int divisor) {
+        if (dividend == divisor) {
+            return 1;
+        }
+        if (divisor == 1) {
+            return dividend;
+        }
+        if (divisor == -1) {
+            return -dividend;
+        }
+        boolean sign = !((dividend < 0 && divisor >= 0) || (dividend >= 0 && divisor < 0));
+        long numerator = Math.abs(dividend);
+        long denominator = Math.abs(divisor);
+        long res = 0;
+        while (numerator >= denominator) {
+            int bits = 0;
+            while (numerator >= denominator << (bits + 1)) {
+                bits++;
+            }
+            res += 1L << bits;
+            numerator -= denominator << bits;
+        }
+        if (res > Integer.MAX_VALUE) {
+            return sign ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+        return (int) (sign ? res : -res);
+    }
+
+}

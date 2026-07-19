@@ -1,0 +1,31 @@
+package module.two._2pointers.assignment;
+
+import java.util.Arrays;
+
+public class _3TwoSumIISorted {
+
+    public static void main(String[] args) {
+        System.out.println("Indices of two numbers whose sum is K are " + Arrays.toString(twoSumIndices(new int[]{2, 7, 11, 15}, 9)));
+        System.out.println("Indices of two numbers whose sum is K are " + Arrays.toString(twoSumIndices(new int[]{2, 3, 4}, 6)));
+    }
+
+    private static int[] twoSumIndices(int[] numbers, int target) {
+        int[] indices = {-1, -1};
+        int left = 0, right = numbers.length - 1;
+        while (left < right) {
+            int sum = numbers[left] + numbers[right];
+            if (sum == target) {
+                indices[0] = left + 1;
+                indices[1] = right + 1;
+                return indices;
+            }
+            if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return indices;
+    }
+
+}

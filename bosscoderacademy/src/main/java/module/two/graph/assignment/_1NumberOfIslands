@@ -1,0 +1,95 @@
+package module.two.graph.assignment;
+
+import java.util.List;
+import java.util.Queue;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class _1NumberOfIslands {
+
+    private static List<List<Integer>> getInput1() {
+        ArrayList<Integer> list1 = new ArrayList<>(List.of(1, 1, 1, 1, 0));
+        ArrayList<Integer> list2 = new ArrayList<>(List.of(1, 1, 0, 1, 0));
+        ArrayList<Integer> list3 = new ArrayList<>(List.of(1, 1, 0, 0, 0));
+        ArrayList<Integer> list4 = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        return new ArrayList<>(List.of(list1, list2, list3, list4));
+    }
+
+    private static List<List<Integer>> getInput2() {
+        ArrayList<Integer> list1 = new ArrayList<>(List.of(1, 1, 0, 0, 0));
+        ArrayList<Integer> list2 = new ArrayList<>(List.of(1, 1, 0, 0, 0));
+        ArrayList<Integer> list3 = new ArrayList<>(List.of(0, 0, 1, 0, 0));
+        ArrayList<Integer> list4 = new ArrayList<>(List.of(0, 0, 0, 1, 1));
+        return new ArrayList<>(List.of(list1, list2, list3, list4));
+    }
+
+    public static void main(String[] args) {
+        printNumberOfIslands(getInput1());
+        printNumberOfIslands(getInput2());
+    }
+
+    private static void printNumberOfIslands(List<List<Integer>> grid) {
+        System.out.println("Number of islands using depth first traversal: " + approach1(grid));
+        System.out.println("Number of islands using breadth first traversal: " + approach2(grid));
+        System.out.println();
+    }
+
+    private static int approach1(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        int islands = 0;
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (grid.get(r).get(c) == 1) {
+                    islands++;
+                    dfs(grid, r, c, m, n);
+                }
+            }
+        }
+        return islands;
+    }
+
+    private static void dfs(List<List<Integer>> grid, int r, int c, int m, int n) {
+        if (r < 0 || c < 0 || r >= m || c >= n || grid.get(r).get(c) == 0) {
+            return;
+        }
+        grid.get(r).set(c, 0);
+        dfs(grid, r - 1, c, m, n);
+        dfs(grid, r + 1, c, m, n);
+        dfs(grid, r, c - 1, m, n);
+        dfs(grid, r, c + 1, m, n);
+    }
+
+    private static int approach2(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        int islands = 0;
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (grid.get(r).get(c) == 1) {
+                    islands++;
+                    bfs(grid, r, c, m, n);
+                }
+            }
+        }
+        return islands;
+    }
+
+    private static void bfs(List<List<Integer>> grid, int r, int c, int m, int n) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{r, c});
+        grid.get(r).set(c, 0);
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        while (!queue.isEmpty()) {
+            int[] dir = queue.poll();
+            int row = dir[0], col = dir[1];
+            for (int[] direction : directions) {
+                int newRow = row + direction[0];
+                int newCol = col + direction[1];
+                if (newRow >= 0 && newCol >= 0 && newRow < m && newCol < n && grid.get(newRow).get(newCol) == 1) {
+                    queue.offer(new int[]{newRow, newCol});
+                    grid.get(newRow).set(newCol, 0);
+                }
+            }
+        }
+    }
+
+}

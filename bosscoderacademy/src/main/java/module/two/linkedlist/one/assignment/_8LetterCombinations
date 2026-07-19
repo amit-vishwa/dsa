@@ -1,0 +1,33 @@
+package module.two.linkedlist.one.assignment;
+
+import java.util.ArrayList;
+
+public class _8LetterCombinations {
+
+    public static void main(String[] args) {
+        System.out.println(letterCombinations("23"));
+        System.out.println(letterCombinations("2"));
+    }
+
+    private static ArrayList<String> letterCombinations(String digits) {
+        ArrayList<String> result = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return result;
+        }
+        String[] keypad = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        recursion(digits, result, keypad, 0, "");
+        return result;
+    }
+
+    private static void recursion(String digits, ArrayList<String> result, String[] keypad, int index, String answer) {
+        if (index == digits.length()) {
+            result.add(answer);
+            return;
+        }
+        String letters = keypad[digits.charAt(index) - '0'];
+        for (char letter : letters.toCharArray()) {
+            recursion(digits, result, keypad, index + 1, answer + letter);
+        }
+    }
+
+}

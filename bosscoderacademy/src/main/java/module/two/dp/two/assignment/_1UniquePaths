@@ -1,0 +1,87 @@
+package module.two.dp.two.assignment;
+
+import java.util.Arrays;
+
+public class _1UniquePaths {
+
+    public static void main(String[] args) {
+        printUniquePaths(3, 2);
+        printUniquePaths(3, 7);
+    }
+
+    private static void printUniquePaths(int m, int n) {
+        System.out.println("Number of unique paths using recursion:          " + approach1(m, n));
+        System.out.println("Number of unique paths using memoization:        " + approach2(m, n));
+        System.out.println("Number of unique paths using tabulation:         " + approach3(m, n));
+        System.out.println("Number of unique paths using space optimization: " + approach4(m, n));
+        System.out.println();
+    }
+
+    private static int approach1(int m, int n) {
+        return recursion(m - 1, n - 1);
+    }
+
+    private static int recursion(int m, int n) {
+        if (m == 0 || n == 0) {
+            return 1;
+        }
+        return recursion(m - 1, n) + recursion(m, n - 1);
+    }
+
+    private static int approach2(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        return memoization(m - 1, n - 1, dp);
+    }
+
+    private static int memoization(int m, int n, int[][] dp) {
+        if (m == 0 || n == 0) {
+            return 1;
+        }
+        if (dp[m][n] != -1) {
+            return dp[m][n];
+        }
+        dp[m][n] = memoization(m - 1, n, dp) + memoization(m, n - 1, dp);
+        return dp[m][n];
+    }
+
+    private static int approach3(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int r = 0; r < m; r++) {
+            dp[r][0] = 1;
+        }
+        for (int c = 0; c < n; c++) {
+            dp[0][c] = 1;
+        }
+        for (int r = 1; r < m; r++) {
+            for (int c = 1; c < n; c++) {
+                dp[r][c] = dp[r - 1][c] + dp[r][c - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    private static int approach4(int m, int n) {
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[j] += dp[j - 1];
+            }
+        }
+        return dp[n - 1];
+    }
+
+    private static int approach5(int m, int n) {
+        int N = m + n - 2;
+        int R = Math.min(m - 1, n - 1);
+        long result = 1;
+        for (int i = 1; i <= R; i++) {
+            result = result * (N - R + i) / i;
+        }
+        return (int) result;
+    }
+
+}

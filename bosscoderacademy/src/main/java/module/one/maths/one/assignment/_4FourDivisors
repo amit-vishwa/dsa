@@ -1,0 +1,32 @@
+package module.one.maths.one.assignment;
+
+public class _4FourDivisors {
+
+    public static void main(String[] args) {
+        System.out.println("Four divisors sum: " + getFourDivisorsSum(new int[]{21, 4, 7}));
+        System.out.println("Four divisors sum: " + getFourDivisorsSum(new int[]{21, 21}));
+    }
+
+    private static int getFourDivisorsSum(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += getContributions(num);
+        }
+        return sum;
+    }
+
+    private static int getContributions(int num) {
+        int sum = 0, count = 0;
+        for (int i = 1; i * i <= num && count <= 4; i++) {
+            if (num % i == 0) {
+                if (i * i == num) {
+                    return 0; // as it is a perfect square i.e. odd factors
+                }
+                sum = sum + i + num / i;
+                count = (i != num / i) ? count + 2 : count + 1;
+            }
+        }
+        return (count == 4) ? sum : 0;
+    }
+
+}

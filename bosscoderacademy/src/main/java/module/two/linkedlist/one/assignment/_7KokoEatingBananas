@@ -1,0 +1,38 @@
+package module.two.linkedlist.one.assignment;
+
+public class _7KokoEatingBananas {
+
+    public static void main(String[] args) {
+        System.out.println("Minimum bananas Koko can eat in h hours are " + binarySearch(new int[]{3, 6, 7, 11}, 8));
+        System.out.println("Minimum bananas Koko can eat in h hours are " + binarySearch(new int[]{30, 11, 23, 4, 20}, 5));
+    }
+
+    private static int binarySearch(int[] piles, int hours) {
+        int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
+        for (int pile : piles) {
+            low = Math.min(pile, low);
+            high = Math.max(pile, high);
+        }
+        while (low <= high) {
+            int speed = (low + high) / 2;
+            int totalTime = getCount(piles, speed);
+            if (totalTime > hours) {
+                low = speed + 1;
+            } else {
+                high = speed - 1;
+            }
+        }
+        return low;
+    }
+
+    private static int getCount(int[] piles, int speed) {
+        int totalTime = 0;
+        for (int pile : piles) {
+            int sum = pile + speed - 1;
+            totalTime += sum / speed;
+        }
+        return totalTime;
+    }
+
+
+}

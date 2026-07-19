@@ -1,0 +1,45 @@
+package module.two.linkedlist.two.assignment;
+
+import module.two.linkedlist.Node;
+import module.two.linkedlist.ListNode;
+
+public class _4PalindromeLL {
+
+    public static void main(String[] args) {
+        System.out.println("Is given linked list a palindrome? " + palindromeCheck(new ListNode().convertToLL(new int[]{1, 2, 2, 1})) + "\n");
+        System.out.println("Is given linked list a palindrome? " + palindromeCheck(new ListNode().convertToLL(new int[]{1, 2, 3})) + "\n");
+    }
+
+    private static boolean palindromeCheck(Node head) {
+        Node mid = getMid(head);
+        mid = reverse(mid);
+        while (head != null && mid != null) {
+            if (head.data != mid.data) {
+                return false;
+            }
+            head = head.next;
+            mid = mid.next;
+        }
+        return true;
+    }
+
+    private static Node getMid(Node head) {
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    private static Node reverse(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node newNode = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newNode;
+    }
+
+}

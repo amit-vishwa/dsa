@@ -1,0 +1,29 @@
+package module.one.maths.one.notes;
+
+import java.util.Random;
+
+public class _2ImplementRandom7 {
+
+    public static void main(String[] args) {
+        System.out.println(random7());
+        System.out.println(random7());
+        System.out.println(random7());
+        System.out.println(random7());
+        System.out.println(random7());
+    }
+
+    private static int random7() {
+        int num, num1, num2;
+        do {
+            num1 = random5();
+            num2 = random5();
+        } while (num1 * num2 > 21);
+        num = (num1 - 1) * 5 + num2;
+        return num % 7 + 1;
+    }
+
+    private static int random5() {
+        return new Random().nextInt(1, 6);
+    }
+
+}

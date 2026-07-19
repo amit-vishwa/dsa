@@ -1,0 +1,105 @@
+package module.two.graph.assignment;
+
+import java.util.List;
+import java.util.Queue;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class _5SurroundedRegions {
+
+    private static List<List<Integer>> getInput1() {
+        List<Integer> row1 = new ArrayList<>(List.of(1, 1, 1, 1));
+        List<Integer> row2 = new ArrayList<>(List.of(1, 0, 0, 1));
+        List<Integer> row3 = new ArrayList<>(List.of(1, 1, 0, 1));
+        List<Integer> row4 = new ArrayList<>(List.of(1, 0, 1, 1));
+        return new ArrayList<>(List.of(row1, row2, row3, row4));
+    }
+
+    private static List<List<Integer>> getInput2() {
+        return new ArrayList<>(List.of(new ArrayList<>(List.of(1))));
+    }
+
+    public static void main(String[] args) {
+        printSurroundedRegions(getInput1());
+        printSurroundedRegions(getInput2());
+    }
+
+    private static void printSurroundedRegions(List<List<Integer>> board) {
+        System.out.println("Surrounded regions using DFS: " + approach1(board));
+        System.out.println("Surrounded regions using BFS: " + approach2(board));
+        System.out.println();
+    }
+
+    private static List<List<Integer>> approach1(List<List<Integer>> board) {
+        int m = board.size(), n = board.get(0).size();
+        for (int r = 0; r < m; r++) {
+            dfs(board, r, 0, m, n);
+            dfs(board, r, n - 1, m, n);
+        }
+        for (int c = 0; c < n; c++) {
+            dfs(board, 0, c, m, n);
+            dfs(board, m - 1, c, m, n);
+        }
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (board.get(r).get(c) == 0) {
+                    board.get(r).set(c, 1);
+                } else if (board.get(r).get(c) == 2) {
+                    board.get(r).set(c, 0);
+                }
+            }
+        }
+        return board;
+    }
+
+    private static void dfs(List<List<Integer>> board, int r, int c, int m, int n) {
+        if (r < 0 || c < 0 || r >= m || c >= n || board.get(r).get(c) != 0) {
+            return;
+        }
+        board.get(r).set(c, 2);
+        dfs(board, r + 1, c, m, n);
+        dfs(board, r - 1, c, m, n);
+        dfs(board, r, c + 1, m, n);
+        dfs(board, r, c - 1, m, n);
+    }
+
+    private static List<List<Integer>> approach2(List<List<Integer>> board) {
+        int m = board.size(), n = board.get(0).size();
+        bfs(board, m, n);
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (board.get(r).get(c) == 0) {
+                    board.get(r).set(c, 1);
+                } else if (board.get(r).get(c) == 2) {
+                    board.get(r).set(c, 0);
+                }
+            }
+        }
+        return board;
+    }
+
+    private static void bfs(List<List<Integer>> board, int m, int n) {
+        Queue<int[]> queue = new LinkedList<>();
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if ((r == 0 || c == 0 || r == m - 1 || c == n - 1) && board.get(r).get(c) == 0) {
+                    queue.offer(new int[]{r, c});
+                    board.get(r).set(c, 2);
+                }
+            }
+        }
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (!queue.isEmpty()) {
+            int[] dir = queue.poll();
+            for (int[] direction : directions) {
+                int r = dir[0] + direction[0];
+                int c = dir[1] + direction[1];
+                if (r >= 0 && c >= 0 && r < m && c < n && board.get(r).get(c) == 0) {
+                    board.get(r).set(c, 2);
+                    queue.offer(new int[]{r, c});
+                }
+            }
+        }
+    }
+
+}

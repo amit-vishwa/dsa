@@ -1,0 +1,36 @@
+package module.one.maths.two.notes;
+
+public class _2OddEvenFactors {
+
+    public static void main(String[] args) {
+        printOddEvenFactors(10);
+        printOddEvenFactors(25);
+        printOddEvenFactors(50);
+        printOddEvenFactors(100);
+        printOddEvenFactors(101);
+    }
+
+    private static void printOddEvenFactors(int n) {
+        approach1(n);
+        approach2(n);
+        System.out.println();
+    }
+
+    private static void approach1(int n) {
+        int count = 0;
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {
+                count = (i != n / i) ? count + 2 : count + 1;
+            }
+        }
+        boolean isOdd = (count & 1) == 1;
+        System.out.println("Approach 1: Factors of " + n + " are " + (isOdd ? "ODD" : "EVEN"));
+    }
+
+    private static void approach2(int n) {
+        int root = (int) Math.sqrt(n);
+        boolean isOdd = (root * root == n);
+        System.out.println("Approach 2: Factors of " + n + " are " + (isOdd ? "ODD" : "EVEN"));
+    }
+
+}

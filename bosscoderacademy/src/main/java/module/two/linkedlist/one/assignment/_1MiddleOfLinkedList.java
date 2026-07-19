@@ -1,0 +1,26 @@
+package module.two.linkedlist.one.assignment;
+
+import module.two.linkedlist.Node;
+import module.two.linkedlist.ListNode;
+
+// Refer _1MiddleOfLL.java from package module.two.linkedlist.one.lecture.
+public class _1MiddleOfLinkedList {
+
+    public static void main(String[] args) {
+        printFromMiddleNode(new ListNode().convertToLL(new int[]{1, 2, 3, 4, 5}));
+        printFromMiddleNode(new ListNode().convertToLL(new int[]{1, 2, 3, 4, 5, 6}));
+    }
+
+    private static void printFromMiddleNode(Node head) {
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode node = new ListNode();
+        node.head = slow;
+        node.display();
+        System.out.println();
+    }
+
+}

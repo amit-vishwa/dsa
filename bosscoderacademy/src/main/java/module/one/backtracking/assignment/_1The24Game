@@ -1,0 +1,65 @@
+package module.one.backtracking.assignment;
+
+import java.util.ArrayList;
+
+public class _1The24Game {
+
+    private static final Double EPSILON = 0.000001;
+
+    public static void main(String[] args) {
+        System.out.println(solve(new int[]{4, 1, 8, 7}));
+        System.out.println(solve(new int[]{1, 2, 1, 2}));
+    }
+
+    private static boolean solve(int[] cards) {
+        ArrayList<Double> cardList = new ArrayList<>();
+        for (int card : cards) {
+            cardList.add((double) card);
+        }
+        return evaluate(cardList);
+    }
+
+    private static boolean evaluate(ArrayList<Double> cards) {
+        int n = cards.size();
+        if (n == 1) {
+            return Math.abs(cards.get(0) - 24) <= EPSILON;
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                ArrayList<Double> newCards = new ArrayList<>();
+                for (int k = 0; k < n; k++) {
+                    if (k == i || k == j) {
+                        continue;
+                    }
+                    newCards.add(cards.get(k));
+                }
+                Double num1 = cards.get(i);
+                Double num2 = cards.get(j);
+                for (Double candidate : candidates(num1, num2)) {
+                    newCards.add(candidate);
+                    if (evaluate(newCards)) {
+                        return true;
+                    }
+                    newCards.removeLast();
+                }
+            }
+        }
+        return false;
+    }
+
+    private static ArrayList<Double> candidates(Double num1, Double num2) {
+        ArrayList<Double> candidates = new ArrayList<>();
+        candidates.add(num1 + num2);
+        candidates.add(num1 * num2);
+        candidates.add(num1 - num2);
+        candidates.add(num2 - num1);
+        if (num2 > EPSILON) {
+            candidates.add(num1 / num2);
+        }
+        if (num1 > EPSILON) {
+            candidates.add(num2 / num1);
+        }
+        return candidates;
+    }
+
+}

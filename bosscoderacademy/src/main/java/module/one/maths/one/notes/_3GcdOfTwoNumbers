@@ -1,0 +1,33 @@
+package module.one.maths.one.notes;
+
+public class _3GcdOfTwoNumbers {
+
+    public static void main(String[] args) {
+        printGcd(20, 28);
+        printGcd(98, 56);
+    }
+
+    private static void printGcd(int num1, int num2) {
+        System.out.println("Gcd of numbers by approach1: " + approach1(num1, num2));
+        System.out.println("Gcd of numbers by approach2: " + approach2(num1, num2));
+    }
+
+    private static int approach1(int num1, int num2) {
+        for (int i = Math.min(num1, num2); i >= 1; i--) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                return i;
+            }
+        }
+        return 1;
+    }
+
+    private static int approach2(int num1, int num2) {
+        while (num1 > 0) {
+            int temp = num1;
+            num1 = num2 % num1;
+            num2 = temp;
+        }
+        return num2;
+    }
+
+}

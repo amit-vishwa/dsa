@@ -1,0 +1,83 @@
+package module.two.dp.two.assignment;
+
+import java.util.Arrays;
+
+public class _7LongestPalindromicSubsequence {
+
+    public static void main(String[] args) {
+        printLongestPalindromicSubsequenceLength("bbbab");
+        printLongestPalindromicSubsequenceLength("cbbd");
+    }
+
+    private static void printLongestPalindromicSubsequenceLength(String s) {
+        System.out.println("Longest palindromic subsequence length using recursion:          " + approach1(s));
+        System.out.println("Longest palindromic subsequence length using memoization:        " + approach2(s));
+        System.out.println("Longest palindromic subsequence length using tabulation:         " + approach3(s));
+        System.out.println("Longest palindromic subsequence length using space optimization: " + approach4(s));
+        System.out.println();
+    }
+
+    private static int approach1(String s) {
+        String r = new StringBuilder(s).reverse().toString();
+        return recursion(s, r, 0, 0);
+    }
+
+    private static int recursion(String s, String r, int idx1, int idx2) {
+        if (idx1 == s.length() || idx2 == r.length()) {
+            return 0;
+        }
+        if (s.charAt(idx1) == r.charAt(idx2)) {
+            return 1 + recursion(s, r, idx1 + 1, idx2 + 1);
+        }
+        return Math.max(recursion(s, r, idx1 + 1, idx2), recursion(s, r, idx1, idx2 + 1));
+    }
+
+    private static int approach2(String s) {
+        String r = new StringBuilder(s).reverse().toString();
+        int[][] dp = new int[s.length() + 1][r.length() + 1];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        return memoization(s, r, 0, 0, dp);
+    }
+
+    private static int memoization(String s, String r, int i, int j, int[][] dp) {
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        if (i == s.length() || j == r.length()) {
+            return dp[i][j] = 0;
+        }
+        if (s.charAt(i) == r.charAt(j)) {
+            return dp[i][j] = 1 + memoization(s, r, i + 1, j + 1, dp);
+        }
+        return dp[i][j] = Math.max(memoization(s, r, i + 1, j, dp), memoization(s, r, i, j + 1, dp));
+    }
+
+    private static int approach3(String s) {
+        String r = new StringBuilder(s).reverse().toString();
+        int m = s.length(), n = r.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                dp[i][j] = (s.charAt(i - 1) == r.charAt(j - 1)) ? 1 + dp[i - 1][j - 1] : Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        return dp[m][n];
+    }
+
+    private static int approach4(String s) {
+        String rs = new StringBuilder(s).reverse().toString();
+        int m = s.length(), n = rs.length();
+        int[] prev = new int[n + 1];
+        for (int r = 1; r <= m; r++) {
+            int[] curr = new int[n + 1];
+            for (int c = 1; c <= n; c++) {
+                curr[c] = (s.charAt(r - 1) == rs.charAt(c - 1)) ? 1 + prev[c - 1] : Math.max(prev[c], curr[c - 1]);
+            }
+            prev = curr;
+        }
+        return prev[n];
+    }
+
+}

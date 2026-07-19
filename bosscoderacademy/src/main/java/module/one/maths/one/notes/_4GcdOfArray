@@ -1,0 +1,23 @@
+package module.one.maths.one.notes;
+
+public class _4GcdOfArray {
+
+    public static void main(String[] args) {
+        System.out.println("Array gcd: " + arrayGcd(new int[]{2, 5, 6, 9, 10}));
+        System.out.println("Array gcd: " + arrayGcd(new int[]{3, 3}));
+    }
+
+    private static int arrayGcd(int[] arr) {
+        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+        for (int num : arr) {
+            max = Math.max(max, num);
+            min = Math.min(min, num);
+        }
+        return gcd(max, min);
+    }
+
+    private static int gcd(int num1, int num2) {
+        return num1 == 0 ? num2 : gcd(num2 % num1, num1);
+    }
+
+}

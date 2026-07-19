@@ -1,0 +1,60 @@
+package module.one.maths.two.assignment;
+
+public class _4FactorialTrailingZeroes {
+
+    public static void main(String[] args) {
+        printZeroesCount(3);
+        printZeroesCount(5);
+        printZeroesCount(20);
+        printZeroesCount(251);
+    }
+
+    private static void printZeroesCount(int n) {
+        System.out.println("Approach 1 - Trailing zeroes count : " + approach1(n));
+        System.out.println("Approach 2 - Trailing zeroes count : " + approach2(n));
+        System.out.println("Approach 3 - Trailing zeroes count : " + approach3(n));
+        System.out.println();
+    }
+
+    private static int approach1(int n) {
+        int count = 0;
+        long fact = getFactorial(n);
+        while (fact > 0) {
+            int rem = (int) (fact % 10);
+            if (rem == 0) {
+                count++;
+            } else {
+                break;
+            }
+            fact /= 10;
+        }
+        return count;
+    }
+
+    private static long getFactorial(int n) {
+        long fact = 1;
+        while (n > 0) {
+            fact *= n;
+            n--;
+        }
+        return fact;
+    }
+
+    private static int approach2(int n) {
+        int count = 0;
+        for (int i = 5; i <= n; i *= 5) {
+            count += n / i;
+        }
+        return count;
+    }
+
+    private static int approach3(int n) {
+        int count = 0;
+        while (n / 5 > 0) {
+            n /= 5;
+            count += n;
+        }
+        return count;
+    }
+
+}

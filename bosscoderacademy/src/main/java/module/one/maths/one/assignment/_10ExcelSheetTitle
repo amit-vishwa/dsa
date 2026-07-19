@@ -1,0 +1,27 @@
+package module.one.maths.one.assignment;
+
+public class _10ExcelSheetTitle {
+
+    public static void main(String[] args) {
+        System.out.println("Excel sheet title: " + getTitle(1));
+        System.out.println("Excel sheet title: " + getTitle(28));
+    }
+
+    private static String getTitle(int cell) {
+        if(cell < 1) {
+            return "";
+        }
+        StringBuilder title = new StringBuilder();
+        int rem = (cell - 1) % 26;
+        if (cell > 26) {
+            int quo = (cell - 1) / 26;
+            while (quo > 0) {
+                title.append("A");
+                quo--;
+            }
+        }
+        title.append((char)('A' + rem));
+        return title.toString();
+    }
+
+}

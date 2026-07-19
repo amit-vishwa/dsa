@@ -1,0 +1,52 @@
+package module.two.bst.assignment;
+
+import module.two.bst.Node;
+
+import java.util.Arrays;
+import java.util.ArrayList;
+
+// This is similar to _3MergeTwoBSTs.java
+public class _4MergeBSTs {
+
+    public static void main(String[] args) {
+        Node root1 = new Node(2);
+        root1.left = new Node(1);
+        root1.right = new Node(4);
+        Node root2 = new Node(1);
+        root2.left = new Node(0);
+        root2.right = new Node(3);
+        System.out.println("Merged BST: " + Arrays.toString(mergeTwoBSTs(root1, root2)));
+    }
+
+    private static int[] mergeTwoBSTs(Node root1, Node root2) {
+        ArrayList<Integer> nodeDataList1 = getNodeList(root1);
+        ArrayList<Integer> nodeDataList2 = getNodeList(root2);
+        return mergeTrees(nodeDataList1, nodeDataList2);
+    }
+
+    private static int[] mergeTrees(ArrayList<Integer> nodeDataList1, ArrayList<Integer> nodeDataList2) {
+        int n = nodeDataList1.size(), m = nodeDataList2.size(), i = 0, j = 0, k = 0;
+        int[] mergedTreeArray = new int[n + m];
+        while (i < n && j < m) {
+            mergedTreeArray[k++] = (nodeDataList1.get(i) <= nodeDataList2.get(j)) ? nodeDataList1.get(i++) : nodeDataList2.get(j++);
+        }
+        while (i < n) {
+            mergedTreeArray[k++] = nodeDataList1.get(i++);
+        }
+        while (j < m) {
+            mergedTreeArray[k++] = nodeDataList2.get(j++);
+        }
+        return mergedTreeArray;
+    }
+
+    private static ArrayList<Integer> getNodeList(Node root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        ArrayList<Integer> nodeDataList = getNodeList(root.left);
+        nodeDataList.add(root.data);
+        nodeDataList.addAll(getNodeList(root.right));
+        return nodeDataList;
+    }
+
+}

@@ -1,0 +1,28 @@
+package module.one.arrays_and_maths.notes;
+
+public class _2TrappingRainWater{
+
+    public static void main(String[] args){
+        printCapacity(new int[]{0,1,0,2,1,0,1,3,2,1,2,1});
+    }
+
+    private static void printCapacity(int[] arr){
+        int n = arr.length;
+        int capacity = 0;
+        for(int i = 0; i < n; i++){
+            int maxLeft = 0, maxRight = 0, j = i;
+            while(j >= 0){
+                maxLeft = Math.max(maxLeft, arr[j]);
+                j--;
+            }
+            j = i;
+            while(j < n){
+                maxRight = Math.max(maxRight, arr[j]);
+                j++;
+            }
+            capacity += (Math.min(maxRight, maxLeft) - arr[i]);
+        }
+        System.out.println("Max stored water capacity: " + capacity);
+    }
+
+}

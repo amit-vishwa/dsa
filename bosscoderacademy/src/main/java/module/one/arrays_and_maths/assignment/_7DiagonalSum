@@ -1,0 +1,26 @@
+package module.one.arrays_and_maths.assignment;
+
+public class _7DiagonalSum{
+
+    public static void main(String[] args){
+        printSum(List.of(List.of(1,2,3),List.of(4,5,6),List.of(7,8,9)));
+    }
+
+    private static void printSum(List<List<Integer>> input){
+        int sum = 0;
+        int n = input.size();
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(i == j || j == n - 1 - i){
+                    sum += input.get(i).get(j);
+                }
+            }
+        }
+        System.out.println("Matrix:");
+        for(List<Integer> row: input){
+            System.out.println(row);
+        }
+        System.out.println("Diagonal sum: " + sum);
+    }
+
+}

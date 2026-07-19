@@ -1,0 +1,38 @@
+package module.one.maths.two.assignment;
+
+import java.util.ArrayList;
+
+public class _6PermutationSequence {
+
+    public static void main(String[] args) {
+        System.out.println("Kth permutation: " + kthPermutation(3, 3));
+        System.out.println("Kth permutation: " + kthPermutation(4, 9));
+    }
+
+    private static String kthPermutation(int n, int k) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            sb.append(i);
+        }
+        ArrayList<String> permutationList = permutations("", sb.toString());
+        permutationList.sort(null);
+        return permutationList.get((k - 1) % permutationList.size());
+    }
+
+    private static ArrayList<String> permutations(String processed, String unProcessed) {
+        if (unProcessed.isEmpty()) {
+            ArrayList<String> permutation = new ArrayList<>();
+            permutation.add(processed);
+            return permutation;
+        }
+        ArrayList<String> permutationList = new ArrayList<>();
+        for (int i = 0; i <= processed.length(); i++) {
+            String leftString = processed.substring(0, i);
+            char midString = unProcessed.charAt(0);
+            String rightString = processed.substring(i);
+            permutationList.addAll(permutations(leftString + midString + rightString, unProcessed.substring(1)));
+        }
+        return permutationList;
+    }
+
+}

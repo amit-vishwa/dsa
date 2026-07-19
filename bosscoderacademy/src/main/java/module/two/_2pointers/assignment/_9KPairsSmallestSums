@@ -1,0 +1,31 @@
+package module.two._2pointer.assignment;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class _9KPairsSmallestSums {
+
+    public static void main(String[] args) {
+        System.out.println("The first K pairs are " + kPairs(new int[]{1, 7, 11},new int[]{2, 4, 6}, 3));
+        System.out.println("The first K pairs are " + kPairs(new int[]{1, 1, 2},new int[]{1, 2, 3}, 3));
+    }
+
+    private static ArrayList<ArrayList<Integer>> kPairs(int[] nums1, int[] nums2, int k) {
+        ArrayList<ArrayList<Integer>> pairsList = new ArrayList<>();
+        for (int n1 : nums1) {
+            for (int n2 : nums2) {
+                ArrayList<Integer> pairs = new ArrayList<>();
+                pairs.add(n1);
+                pairs.add(n2);
+                pairsList.add(pairs);
+            }
+        }
+        Collections.sort(pairsList, (list1, list2) -> (list1.get(0) + list1.get(1)) - (list2.get(0) + list2.get(1)));
+        ArrayList<ArrayList<Integer>> kPairs = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            kPairs.add(pairsList.get(i));
+        }
+        return kPairs;
+    }
+
+}

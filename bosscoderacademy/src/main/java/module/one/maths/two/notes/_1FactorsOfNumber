@@ -1,0 +1,38 @@
+package module.one.maths.two.notes;
+
+public class _1FactorsOfNumber {
+
+    public static void main(String[] args) {
+        printNumberFactors(10);
+        printNumberFactors(101);
+    }
+
+    private static void printNumberFactors(int n) {
+        approach1(n);
+        approach2(n);
+    }
+
+    private static void approach1(int n) {
+        System.out.print("All factors of " + n + " using approach 1: [1");
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                System.out.print(i + ", ");
+            }
+        }
+        System.out.println(n + "]");
+    }
+
+    private static void approach2(int n) {
+        System.out.print("All factors of " + n + " using approach 2: [1");
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                System.out.print(i + ", ");
+                if (i != n / i) {
+                    System.out.print((n / i) + ", ");
+                }
+            }
+        }
+        System.out.println(n + "]");
+    }
+
+}

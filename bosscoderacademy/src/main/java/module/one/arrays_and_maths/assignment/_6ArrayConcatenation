@@ -1,0 +1,22 @@
+package module.one.arrays_and_maths.assignment;
+
+import java.util.Arrays;
+
+public class _6ArrayConcatenation{
+
+    public static void main(String[] args){
+        printConcatenatedArray(new int[]{1, 2, 1});
+        printConcatenatedArray(new int[]{1, 2, 2, 1});
+    }
+
+    private static void printConcatenatedArray(int[] arr){
+        int n = arr.length;
+        int[] ans = new int[2 * n];
+        for(int i = 0; i < 2 * n; i++){
+            ans[i] = arr[i % n];
+        }
+        System.out.println("Array: " + Arrays.toString(arr));
+        System.out.println("Array: " + Arrays.toString(ans));
+    }
+
+}

@@ -1,0 +1,32 @@
+package module.two._2pointers.assignment;
+
+import java.util.ArrayList;
+
+public class _1UglyNumberII {
+
+    public static void main(String[] args) {
+        System.out.println(10 + "th ugly number is " + uglyNumber(10));
+        System.out.println(1 + "st ugly number is " + uglyNumber(1));
+    }
+
+    private static int uglyNumber(int num) {
+        int i = 0, j = 0, k = 0;
+        ArrayList<Integer> uglyNumberList = new ArrayList<>();
+        uglyNumberList.add(1);
+        while (uglyNumberList.size() < num) {
+            int uglyNumber = Math.min(uglyNumberList.get(i) * 2, Math.min(uglyNumberList.get(j) * 3, uglyNumberList.get(k) * 5));
+            uglyNumberList.add(uglyNumber);
+            if (uglyNumberList.get(i) * 2 == uglyNumber) {
+                i++;
+            }
+            if (uglyNumberList.get(j) * 3 == uglyNumber) {
+                j++;
+            }
+            if (uglyNumberList.get(k) * 5 == uglyNumber) {
+                k++;
+            }
+        }
+        return uglyNumberList.get(uglyNumberList.size() - 1);
+    }
+
+}

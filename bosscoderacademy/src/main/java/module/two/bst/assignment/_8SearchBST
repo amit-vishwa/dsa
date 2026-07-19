@@ -1,0 +1,24 @@
+package module.two.bst.assignment;
+
+import module.two.bst.Node;
+import module.two.bst.BinaryTree;
+
+public class _8SearchBST {
+
+    public static void main(String[] args) {
+        Node root = new Node(4);
+        root.left = new Node(2);
+        root.left.left = new Node(1);
+        root.left.right = new Node(3);
+        root.right = new Node(7);
+        BinaryTree.display(binarySearchTree(root, 2), 2);
+    }
+
+    private static Node binarySearchTree(Node root, int val) {
+        if (root == null || root.data == val) {
+            return root;
+        }
+        return val < root.data ? binarySearchTree(root.left, val) : binarySearchTree(root.right, val);
+    }
+
+}

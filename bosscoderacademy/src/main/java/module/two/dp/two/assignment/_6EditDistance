@@ -1,0 +1,107 @@
+package module.two.dp.two.assignment;
+
+import java.util.Arrays;
+
+public class _6EditDistance {
+
+    public static void main(String[] args) {
+        printMinNumOperations("horse", "ros");
+        printMinNumOperations("intention", "execution");
+    }
+
+    private static void printMinNumOperations(String word1, String word2) {
+        System.out.println("Minimum number of operations required using recursion:          " + approach1(word1, word2));
+        System.out.println("Minimum number of operations required using memoization:        " + approach2(word1, word2));
+        System.out.println("Minimum number of operations required using tabulation:         " + approach3(word1, word2));
+        System.out.println("Minimum number of operations required using space optimization: " + approach4(word1, word2));
+        System.out.println();
+    }
+
+    private static int approach1(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        return recursion(word1, word2, m, n);
+    }
+
+    private static int recursion(String word1, String word2, int idx1, int idx2) {
+        if (idx1 == 0) {
+            return idx2; // insert all
+        }
+        if (idx2 == 0) {
+            return idx1; // delete all
+        }
+        if (word1.charAt(idx1 - 1) == word2.charAt(idx2 - 1)) {
+            return recursion(word1, word2, idx1 - 1, idx2 - 1);
+        }
+        int insert = recursion(word1, word2, idx1, idx2 - 1);
+        int delete = recursion(word1, word2, idx1 - 1, idx2);
+        int replace = recursion(word1, word2, idx1 - 1, idx2 - 1);
+        return 1 + Math.min(insert, Math.min(delete, replace));
+    }
+
+    private static int approach2(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        return memoization(word1, word2, m, n, dp);
+    }
+
+    private static int memoization(String word1, String word2, int idx1, int idx2, int[][] dp) {
+        if (dp[idx1][idx2] != -1) {
+            return dp[idx1][idx2];
+        }
+        if (idx1 == 0) {
+            return dp[idx1][idx2] = idx2;
+        }
+        if (idx2 == 0) {
+            return dp[idx1][idx2] = idx1;
+        }
+        if (word1.charAt(idx1 - 1) == word2.charAt(idx2 - 1)) {
+            return dp[idx1][idx2] = memoization(word1, word2, idx1 - 1, idx2 - 1, dp);
+        }
+        int insert = memoization(word1, word2, idx1, idx2 - 1, dp);
+        int delete = memoization(word1, word2, idx1 - 1, idx2, dp);
+        int replace = memoization(word1, word2, idx1 - 1, idx2 - 1, dp);
+        return dp[idx1][idx2] = 1 + Math.min(insert, Math.min(delete, replace));
+    }
+
+    private static int approach3(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int r = 0; r <= m; r++) {
+            dp[r][0] = r;
+        }
+        for (int c = 0; c <= n; c++) {
+            dp[0][c] = c;
+        }
+        for (int r = 1; r <= m; r++) {
+            for (int c = 1; c <= n; c++) {
+                if (word1.charAt(r - 1) == word2.charAt(c - 1)) {
+                    dp[r][c] = dp[r - 1][c - 1];
+                } else {
+                    dp[r][c] = 1 + Math.min(dp[r - 1][c - 1], Math.min(dp[r - 1][c], dp[r][c - 1]));
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    private static int approach4(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        int[] prev = new int[n + 1];
+        for (int c = 0; c <= n; c++) {
+            prev[c] = c;
+        }
+        for (int r = 1; r <= m; r++) {
+            int[] curr = new int[n + 1];
+            curr[0] = r;
+            for (int c = 1; c <= n; c++) {
+                curr[c] = (word1.charAt(r - 1) == word2.charAt(c - 1)) ? prev[c - 1] : 1 + Math.min(prev[c - 1], Math.min(prev[c], curr[c - 1]));
+            }
+            prev = curr;
+        }
+        return prev[n];
+    }
+
+}

@@ -1,0 +1,73 @@
+package module.two.hashing.one.assignment;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class _2LongestConsecutiveSequence {
+
+    public static void main(String[] args) {
+        printLargestConsecutiveSequenceCount(new int[]{100, 4, 200, 1, 3, 2});
+        printLargestConsecutiveSequenceCount(new int[]{0, 3, 7, 2, 5, 8, 4, 6, 0, 1});
+    }
+
+    private static void printLargestConsecutiveSequenceCount(int[] nums) {
+        int[] arr = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(arr);
+        System.out.println("Largest consecutive sequence count by approach 1: " + approach1(arr));
+        System.out.println("Largest consecutive sequence count by approach 2: " + approach2(arr));
+        System.out.println("Largest consecutive sequence count by approach 3: " + approach3(nums));
+        System.out.println();
+    }
+
+    private static int approach1(int[] nums) {
+        int maxSequenceCount = 0, n = nums.length;
+        for (int i = 0; i < n; i++) {
+            int sequenceCount = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (nums[j] == nums[j - 1] + 1) {
+                    sequenceCount++;
+                    maxSequenceCount = Math.max(maxSequenceCount, sequenceCount);
+                } else {
+                    sequenceCount = 1;
+                }
+            }
+        }
+        return maxSequenceCount;
+    }
+
+    private static int approach2(int[] nums) {
+        int maxSequenceCount = 0, sequenceCount = 1, n = nums.length, i = 0, j = 1;
+        while (j < n) { // 1,2,3,4,100,200
+            if (nums[j] == nums[i] + 1) {
+                sequenceCount++;
+                maxSequenceCount = Math.max(maxSequenceCount, sequenceCount);
+            } else {
+                sequenceCount = 1;
+            }
+            i = j;
+            j++;
+        }
+        return maxSequenceCount;
+    }
+
+    private static int approach3(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        int maxSequenceCount = 0;
+        for (int num : set) {
+            if (!set.contains(num - 1)) {
+                int sequenceCount = 1;
+                int number = num;
+                while (set.contains(number + 1)) {
+                    sequenceCount++;
+                    number++;
+                }
+                maxSequenceCount = Math.max(maxSequenceCount, sequenceCount);
+            }
+        }
+        return maxSequenceCount;
+    }
+
+}

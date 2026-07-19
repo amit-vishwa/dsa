@@ -1,0 +1,82 @@
+package module.two.heaps.two.assignment;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.PriorityQueue;
+
+public class _2KthSmallestMatrixSum {
+
+    private static List<List<Integer>> input1() {
+        return new ArrayList<>(List.of(List.of(1, 3, 11), List.of(2, 4, 6)));
+    }
+
+    private static List<List<Integer>> input2() {
+        return new ArrayList<>(List.of(List.of(1, 3, 11), List.of(2, 4, 6)));
+    }
+
+    public static void main(String[] args) {
+        printKthSmallestMatrixSum(input1(), 5);
+        printKthSmallestMatrixSum(input2(), 9);
+    }
+
+    private static void printKthSmallestMatrixSum(List<List<Integer>> mat, int k) {
+        System.out.println(k + " th smallest sum in a matrix by approach 1: " + approach1(mat, k));
+        System.out.println(k + " th smallest sum in a matrix by approach 2: " + approach2(mat, k));
+        System.out.println();
+    }
+
+    private static int approach1(List<List<Integer>> mat, int k) {
+        PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder());
+        maxPQ.offer(0);
+        for (List<Integer> row : mat) {
+            PriorityQueue<Integer> next = new PriorityQueue<>(Collections.reverseOrder());
+            for (int prev : maxPQ) {
+                for (int cell : row) {
+                    next.offer(prev + cell);
+                }
+            }
+            while (next.size() > k) {
+                next.poll();
+            }
+            maxPQ = next;
+        }
+        return maxPQ.poll();
+    }
+
+    private static int approach2(List<List<Integer>> mat, int k) {
+        int minSum = 0, maxSum = 0;
+        for (List<Integer> row : mat) {
+            minSum += row.getFirst();
+            maxSum += row.getLast();
+        }
+        while (minSum < maxSum) {
+            int midSum = minSum + (maxSum - minSum) / 2;
+            int count = countLessEqual(mat, midSum, k, 0, 0);
+            if (count < k) {
+                minSum = midSum + 1;
+            } else {
+                maxSum = midSum;
+            }
+        }
+        return maxSum;
+    }
+
+    private static int countLessEqual(List<List<Integer>> mat, int target, int k, int row, int curSum) {
+        if (curSum > target) {
+            return 0;
+        }
+        if (row == mat.size()) {
+            return 1;
+        }
+        int count = 0;
+        for (int cell : mat.get(row)) {
+            count += countLessEqual(mat, target, k, row + 1, curSum + cell);
+            if (count >= k) {
+                return count;
+            }
+        }
+        return count;
+    }
+
+}

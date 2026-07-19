@@ -1,0 +1,52 @@
+package module.two.heaps.one.assignment;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+public class _2SmallestSumKPairs {
+
+    public static void main(String[] args) {
+        printKPairsWithSmallestSum(new int[]{1, 7, 11}, new int[]{2, 4, 6}, 3);
+        printKPairsWithSmallestSum(new int[]{1, 1, 2}, new int[]{1, 2, 3}, 2);
+    }
+
+    private static void printKPairsWithSmallestSum(int[] nums1, int[] nums2, int k) {
+        System.out.println(k + " pairs with smallest sum by approach 1: " + approach1(nums1, nums2, k));
+        System.out.println(k + " pairs with smallest sum by approach 2: " + approach2(nums1, nums2, k));
+        System.out.println();
+    }
+
+    private static List<List<Integer>> approach1(int[] nums1, int[] nums2, int k) {
+        List<List<Integer>> allPairsList = new ArrayList<>();
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                allPairsList.add(List.of(nums1[i], nums2[j]));
+            }
+        }
+        allPairsList.sort((list1, list2) -> (list1.get(0) + list1.get(1)) - (list2.get(0) + list2.get(1)));
+        List<List<Integer>> kPairsList = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            kPairsList.add(allPairsList.get(i));
+        }
+        return kPairsList;
+    }
+
+    private static List<List<Integer>> approach2(int[] nums1, int[] nums2, int k) {
+        List<List<Integer>> kPairsList = new ArrayList<>();
+        PriorityQueue<List<Integer>> minPriorityQueue = new PriorityQueue<>((list1, list2) -> (list1.get(0) + list1.get(1)) - (list2.get(0) + list2.get(1)));
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                minPriorityQueue.add(List.of(nums1[i], nums2[j]));
+                if (minPriorityQueue.size() > k) {
+                    kPairsList.add(minPriorityQueue.remove());
+                    if (kPairsList.size() == k) {
+                        return kPairsList;
+                    }
+                }
+            }
+        }
+        return kPairsList;
+    }
+
+}

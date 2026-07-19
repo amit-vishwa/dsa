@@ -1,0 +1,26 @@
+package module.one.bit_manipulation.assignment;
+
+import java.util.Arrays;
+
+public class _7OddEvenBitCount {
+
+    public static void main(String[] args) {
+        System.out.println("Odd even bit count: " + Arrays.toString(oddEvenBitCount(17)));
+        System.out.println("Odd even bit count: " + Arrays.toString(oddEvenBitCount(2)));
+    }
+
+    private static int[] oddEvenBitCount(int num) {
+        int odd = 0, even = 0;
+        for (int pos = 0; pos < 32; pos++) {
+            if (((num >> pos) & 1) == 1) {
+                if ((pos & 1) == 1) {
+                    odd++;
+                } else {
+                    even++;
+                }
+            }
+        }
+        return new int[]{even, odd};
+    }
+
+}

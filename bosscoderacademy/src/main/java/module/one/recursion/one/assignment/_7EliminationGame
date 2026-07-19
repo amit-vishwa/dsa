@@ -1,0 +1,24 @@
+package module.one.recursion.one.assignment;
+
+public class _7EliminationGame {
+
+    public static void main(String[] args) {
+        System.out.println(remainingNumber(9));
+        System.out.println(remainingNumber(1));
+    }
+
+    private static int remainingNumber(int num) {
+        int head = 1, step = 1, remaining = num;
+        boolean left = true;
+        while (remaining > 1) {
+            if (left || ((remaining & 1) == 1)) {
+                head += step;
+            }
+            step *= 2;
+            remaining /= 2;
+            left = !left;
+        }
+        return head;
+    }
+
+}

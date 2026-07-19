@@ -1,0 +1,28 @@
+package module.two.linkedlist.two.assignment;
+
+import module.two.linkedlist.Node;
+import module.two.linkedlist.ListNode;
+
+public class _5RemoveLLElements {
+
+    public static void main(String[] args) {
+        printUpdatedList(new ListNode().convertToLL(new int[]{1, 2, 6, 3, 4, 5, 6}), 6);
+        printUpdatedList(new ListNode().convertToLL(new int[]{7, 7, 7, 7}), 7);
+    }
+
+    private static void printUpdatedList(Node head, int data) {
+        Node node = new Node();
+        node.next = head;
+        Node temp = node;
+        while (temp.next != null) {
+            if (temp.next.data == data) {
+                temp.next = temp.next.next;
+            } else {
+                temp = temp.next;
+            }
+        }
+        ListNode.display(node.next);
+        System.out.println();
+    }
+
+}

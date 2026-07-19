@@ -1,0 +1,36 @@
+package module.two.linkedlist.two.assignment;
+
+import module.two.linkedlist.Node;
+import module.two.linkedlist.ListNode;
+
+public class _6BinaryToIntegerLL {
+
+    public static void main(String[] args) {
+        System.out.println("Integer value: " + binaryToInteger(new ListNode().convertToLL(new int[]{1, 0, 1})) + "\n");
+        System.out.println("Integer value: " + binaryToInteger(new ListNode().convertToLL(new int[]{0})) + "\n");
+        System.out.println("Integer value: " + binaryToInteger(new ListNode().convertToLL(new int[]{1, 1, 0, 1})) + "\n");
+        System.out.println("Integer value: " + binaryToInteger(new ListNode().convertToLL(new int[]{0, 1})) + "\n");
+    }
+
+    private static int binaryToInteger(Node head) {
+        int integerValue = 0, power = 0;
+        Node temp = reverse(head);
+        while (temp != null) {
+            integerValue += temp.data * (int)Math.pow(2, power);
+            power++;
+            temp = temp.next;
+        }
+        return integerValue;
+    }
+
+    private static Node reverse(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node newNode = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newNode;
+    }
+
+}

@@ -1,0 +1,34 @@
+package module.one._1d_and_2d_array.assignment;
+
+import java.util.List;
+
+public class _4Search2DMatrix {
+
+    public static void main(String[] args) {
+        List<List<Integer>> mat = List.of(
+                List.of(1, 4, 7, 11, 15),
+                List.of(2, 5, 8, 12, 19),
+                List.of(3, 6, 9, 16, 22),
+                List.of(10, 13, 14, 17, 24),
+                List.of(18, 21, 23, 26, 30)
+        );
+        System.out.println("Target found: " + targetFound(mat, 5));
+        System.out.println("Target found: " + targetFound(mat, 150));
+    }
+
+    private static boolean targetFound(List<List<Integer>> mat, int target) {
+        int m = mat.size(), n = mat.get(0).size(), r = 0, c = n - 1;
+        while (r < m && c >= 0) {
+            if (mat.get(r).get(c) == target) {
+                return true;
+            }
+            if (mat.get(r).get(c) > target) {
+                c--;
+            } else {
+                r++;
+            }
+        }
+        return false;
+    }
+
+}

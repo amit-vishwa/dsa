@@ -1,0 +1,66 @@
+package module.one.sorting.one.assignment;
+
+public class _4InversionCount {
+
+    private static int INVERSION_COUNT;
+
+    public static void main(String[] args) {
+        printInversionCount(new int[]{8, 4, 2, 1});
+        printInversionCount(new int[]{1, 20, 6, 4, 5});
+    }
+
+    private static void printInversionCount(int[] arr) {
+        System.out.println("Inversion count by approach 1: " + approach1(arr));
+        System.out.println("Inversion count by approach 2: " + approach2(arr));
+        System.out.println();
+    }
+
+    private static int approach1(int[] arr) {
+        int count = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private static int approach2(int[] arr) {
+        INVERSION_COUNT = 0;
+        mergeSort(arr, 0, arr.length - 1);
+        return INVERSION_COUNT;
+    }
+
+    private static int[] mergeSort(int[] arr, int start, int end) {
+        if (start >= end) {
+            return new int[]{arr[start]};
+        }
+        int mid = start + (end - start) / 2;
+        int[] left = mergeSort(arr, start, mid);
+        int[] right = mergeSort(arr, mid + 1, end);
+        return merge(left, right);
+    }
+
+    private static int[] merge(int[] left, int[] right) {
+        int n = left.length, m = right.length, i = 0, j = 0, k = 0;
+        int[] merged = new int[n + m];
+        while (i < n && j < m) {
+            if (left[i] <= right[j]) {
+                merged[k++] = left[i++];
+            } else {
+                INVERSION_COUNT += n - i;
+                merged[k++] = right[j++];
+            }
+        }
+        while (i < n) {
+            merged[k++] = left[i++];
+        }
+        while (j < m) {
+            merged[k++] = right[j++];
+        }
+        return merged;
+    }
+
+}

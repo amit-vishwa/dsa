@@ -1,0 +1,36 @@
+package module.one.searching.two.assignment;
+
+public class _4ShipPackage {
+
+    public static void main(String[] args) {
+        System.out.println("Minimum ship capacity: " + minShipCapacity(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 5));
+        System.out.println("Minimum ship capacity: " + minShipCapacity(new int[]{3, 2, 2, 4, 1, 4}, 3));
+    }
+
+    private static int minShipCapacity(int[] weights, int days) {
+        long leastCapacity = 0, maxCapacity = 0;
+        for (int weight : weights) {
+            leastCapacity = Math.max(weight, leastCapacity);
+            maxCapacity += weight;
+        }
+        while (leastCapacity < maxCapacity) {
+            long capacity = leastCapacity + (maxCapacity - leastCapacity) / 2;
+            int minDays = 1;
+            long weightsTillNow = 0;
+            for (int weight : weights) {
+                if (weightsTillNow + weight > capacity) {
+                    weightsTillNow = 0;
+                    minDays++;
+                }
+                weightsTillNow += weight;
+            }
+            if (minDays <= days) {
+                maxCapacity = capacity;
+            } else {
+                leastCapacity = capacity + 1;
+            }
+        }
+        return (int) maxCapacity % 1000000008;
+    }
+
+}

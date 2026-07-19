@@ -1,0 +1,23 @@
+package module.one.arrays_and_maths.warmup;
+
+import java.util.Arrays;
+
+// Leetcode 1929. Concatenation of Array
+public class _3ArrayConcatenation {
+
+    public static void main(String[] args) {
+        solve(new int[]{1, 2, 1});
+        solve(new int[]{1, 3, 2, 1});
+    }
+
+    private static void solve(int[] arr) {
+        int n = arr.length;
+        int[] res = new int[2 * n];
+        for (int i = 0; i < 2 * n; i++) {
+            res[i] = arr[i % n];
+        }
+        System.out.println("Array: " + Arrays.toString(arr));
+        System.out.println("Concatenated Array: " + Arrays.toString(res));
+    }
+
+}

@@ -1,0 +1,36 @@
+package module.two.trees.assignment;
+
+import module.two.trees.Node;
+import module.two.trees.BinaryTree;
+
+public class _5BalancedBinaryTree {
+
+    public static void main(String[] args) {
+        Node root = BinaryTree.createDummyTree();
+        System.out.println("Is tree balanced: " + isBalanced(root));
+        root.left.left.left = new Node(1);
+        System.out.println("Is tree balanced: " + isBalanced(root));
+        root.left.left.left.left = new Node(0);
+        System.out.println("Is tree balanced: " + isBalanced(root));
+    }
+
+    private static boolean isBalanced(Node root) {
+        return heightDifference(root) != -1;
+    }
+
+    private static int heightDifference(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = heightDifference(root.left);
+        if (leftHeight == -1) {
+            return -1;
+        }
+        int rightHeight = heightDifference(root.right);
+        if (rightHeight == -1 || Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+}

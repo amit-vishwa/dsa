@@ -1,0 +1,30 @@
+package module.two.bbst.assignment;
+
+import java.util.Stack;
+
+public class _6MinCostTree {
+
+    public static void main(String[] args) {
+        System.out.println("Smallest possible sum of values of each non-leaf node: " + minCostTree(new int[]{6, 2, 4}));
+        System.out.println("Smallest possible sum of values of each non-leaf node: " + minCostTree(new int[]{4, 11}));
+    }
+
+    private static int minCostTree(int[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(Integer.MAX_VALUE);
+        int result = 0;
+        for (int num : arr) {
+            while (stack.peek() <= num) {
+                int mid = stack.pop();
+                result += mid * Math.min(num, stack.peek());
+            }
+            stack.push(num);
+        }
+        while (stack.size() > 2) {
+            int mid = stack.pop();
+            result += mid * stack.peek();
+        }
+        return result;
+    }
+
+}

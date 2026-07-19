@@ -1,0 +1,36 @@
+package module.two._2pointers.assignment;
+
+import java.util.Arrays;
+
+public class _4KDiffPairs {
+
+    public static void main(String[] args) {
+        System.out.println("K difference pairs count is " + pairsCount(new int[]{3, 1, 4, 1, 5}, 2));
+        System.out.println("K difference pairs count is " + pairsCount(new int[]{1, 2, 3, 4, 5}, 1));
+    }
+
+    private static int pairsCount(int[] nums, int k) {
+        Arrays.sort(nums);
+        int pairCount = 0, i = 0, j = 1;
+        while (j < nums.length) {
+            if (i == j) {
+                j++;
+                continue;
+            }
+            int diff = nums[j] - nums[i];
+            if (diff == k) {
+                if (nums[j] != nums[j - 1]) {
+                    pairCount++;
+                    i++;
+                }
+                j++;
+            } else if (diff < k) {
+                j++;
+            } else {
+                i++;
+            }
+        }
+        return pairCount;
+    }
+
+}

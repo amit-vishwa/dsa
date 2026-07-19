@@ -1,0 +1,109 @@
+package module.two.dp.two.assignment;
+
+import java.util.List;
+import java.util.Arrays;
+
+public class _4MinPathSum {
+
+    public static void main(String[] args) {
+        printMinPathSum(List.of(List.of(1, 3, 1), List.of(1, 5, 1), List.of(4, 2, 1)));
+        printMinPathSum(List.of(List.of(1, 2, 3), List.of(4, 5, 6)));
+    }
+
+    private static void printMinPathSum(List<List<Integer>> grid) {
+        if (grid == null || grid.isEmpty() || grid.get(0).isEmpty()) {
+            return;
+        }
+        System.out.println("Minimum path sum using recursion:          " + approach1(grid));
+        System.out.println("Minimum path sum using memoization:        " + approach2(grid));
+        System.out.println("Minimum path sum using tabulation:         " + approach3(grid));
+        System.out.println("Minimum path sum using space optimization: " + approach4(grid));
+        System.out.println();
+    }
+
+    private static int approach1(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        return recursion(grid, m - 1, n - 1);
+    }
+
+    private static int recursion(List<List<Integer>> grid, int m, int n) {
+        if (m < 0 || n < 0) {
+            return Integer.MAX_VALUE;
+        }
+        int gridValue = grid.get(m).get(n);
+        if (m == 0 && n == 0) {
+            return gridValue;
+        }
+        int up = recursion(grid, m - 1, n);
+        int left = recursion(grid, m, n - 1);
+        int minPrev = Math.min(up, left);
+        return minPrev == Integer.MAX_VALUE ? minPrev : minPrev + gridValue;
+    }
+
+    private static int approach2(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        int[][] dp = new int[m][n];
+        for (int[] row : dp) {
+            Arrays.fill(row, Integer.MAX_VALUE);
+        }
+        return memoization(grid, m - 1, n - 1, dp);
+    }
+
+    private static int memoization(List<List<Integer>> grid, int m, int n, int[][] dp) {
+        if (m < 0 || n < 0) {
+            return Integer.MAX_VALUE;
+        }
+        if (dp[m][n] != Integer.MAX_VALUE) {
+            return dp[m][n];
+        }
+        int gridValue = grid.get(m).get(n);
+        if (m == 0 && n == 0) {
+            return dp[m][n] = gridValue;
+        }
+        int up = memoization(grid, m - 1, n, dp);
+        int left = memoization(grid, m, n - 1, dp);
+        int minPrev = Math.min(up, left);
+        dp[m][n] = (minPrev == Integer.MAX_VALUE) ? minPrev : minPrev + gridValue;
+        return dp[m][n];
+    }
+
+    private static int approach3(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        // min path sum till ith row and jth col
+        int[][] dp = new int[m][n];
+        dp[0][0] = grid.get(0).get(0);
+        for (int r = 1; r < m; r++) {
+            dp[r][0] = dp[r - 1][0] + grid.get(r).get(0);
+        }
+        for (int c = 1; c < n; c++) {
+            dp[0][c] = dp[0][c - 1] + grid.get(0).get(c);
+        }
+        for (int r = 1; r < m; r++) {
+            for (int c = 1; c < n; c++) {
+                dp[r][c] = Math.min(dp[r - 1][c], dp[r][c - 1]) + grid.get(r).get(c);
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    private static int approach4(List<List<Integer>> grid) {
+        int m = grid.size(), n = grid.get(0).size();
+        // min path sum till jth col
+        int[] curr;
+        int[] prev = new int[n];
+        prev[0] = grid.get(0).get(0);
+        for (int c = 1; c < n; c++) {
+            prev[c] = prev[c - 1] + grid.get(0).get(c);
+        }
+        for (int r = 1; r < m; r++) {
+            curr = new int[n];
+            curr[0] = prev[0] + grid.get(r).get(0);
+            for (int c = 1; c < n; c++) {
+                curr[c] = Math.min(curr[c - 1], prev[c]) + grid.get(r).get(c);
+            }
+            prev = curr;
+        }
+        return prev[n - 1];
+    }
+
+}

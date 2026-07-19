@@ -1,0 +1,41 @@
+package module.two.graph.assignment;
+
+import java.util.Queue;
+import java.util.HashSet;
+import java.util.LinkedList;
+
+public class _6SmallestBinaryMultiple {
+
+    public static void main(String[] args) {
+        System.out.println("Smallest multiple of number which is a binary digit: " + smallestBinaryMultiple(2));
+        System.out.println("Smallest multiple of number which is a binary digit: " + smallestBinaryMultiple(17));
+    }
+
+    private static int smallestBinaryMultiple(int num) {
+        Queue<String> queue = new LinkedList<>();
+        HashSet<Integer> set = new HashSet<>();
+        queue.offer("1");
+        while (!queue.isEmpty()) {
+            String binaryString = queue.poll();
+            int remainder = modulo(binaryString, num);
+            if (remainder == 0) {
+                return Integer.parseInt(binaryString);
+            }
+            if (!set.contains(remainder)) {
+                set.add(remainder);
+                queue.offer(binaryString + "0");
+                queue.offer(binaryString + "1");
+            }
+        }
+        return -1;
+    }
+
+    private static int modulo(String binaryString, int num) {
+        int mod = 0;
+        for (char bitChar : binaryString.toCharArray()) {
+            mod = (mod * 10 + (bitChar - '0')) % num;
+        }
+        return mod;
+    }
+
+}

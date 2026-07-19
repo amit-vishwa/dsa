@@ -1,0 +1,41 @@
+package module.one.searching.two.assignment;
+
+public class _5NthDigit {
+
+    public static void main(String[] args) {
+        printNthDigit(3);
+        printNthDigit(11);
+        printNthDigit(1101);
+    }
+
+    private static void printNthDigit(int n) {
+        System.out.println(n + "th digit by approach 1: " + approach1(n));
+        System.out.println(n + "th digit by approach 2: " + approach2(n));
+        System.out.println();
+    }
+
+    private static int approach1(int n) {
+        String numStr = "";
+        int num = 1;
+        while (num <= n) {
+            numStr += num++;
+        }
+        int digit = Character.getNumericValue(numStr.charAt(n - 1));
+        return digit;
+    }
+
+    private static int approach2(int n) {
+        int digits = 1, first = 1;
+        long numbers = 9;
+        while (n > numbers * digits) {
+            n -= numbers * digits;
+            numbers *= 10;
+            first *= 10;
+            digits++;
+        }
+        first += (n - 1) / digits;
+        int digit = Character.getNumericValue(String.valueOf(first).charAt((n - 1) % digits));
+        return digit;
+    }
+
+}

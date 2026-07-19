@@ -1,0 +1,23 @@
+package module.one.maths.one.assignment;
+
+public class _8MaxConsecutiveOnes {
+
+    public static void main(String[] args) {
+        System.out.println("Maximum consecutive ones: " + maxConsecutiveOnesCount(new int[]{1, 1, 0, 1, 1, 1}));
+        System.out.println("Maximum consecutive ones: " + maxConsecutiveOnesCount(new int[]{1, 0, 1, 1, 0, 1}));
+    }
+
+    private static int maxConsecutiveOnesCount(int[] arr) {
+        int maxConsecutiveOnesCount = 0, consecutiveOnesCount = 0;
+        for (int num : arr) {
+            if (num == 1) {
+                consecutiveOnesCount++;
+                maxConsecutiveOnesCount = Math.max(maxConsecutiveOnesCount, consecutiveOnesCount);
+            } else {
+                consecutiveOnesCount = 0;
+            }
+        }
+        return maxConsecutiveOnesCount;
+    }
+
+}

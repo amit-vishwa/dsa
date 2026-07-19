@@ -1,0 +1,29 @@
+package module.one._1d_and_2d_array.assignment;
+
+import java.util.List;
+
+public class _8CountNegatives {
+
+    public static void main(String[] args) {
+        System.out.println("Negative numbers count: " + solve(List.of(
+                List.of(4, 3, 2, -1), List.of(3, 2, 1, -1), List.of(1, 1, -1, -2), List.of(-1, -1, -2, -3)
+        )));
+        System.out.println("Negative numbers count: " + solve(List.of(
+                List.of(3, 2), List.of(1, 0)
+        )));
+    }
+
+    private static int solve(List<List<Integer>> matrix) {
+        int count = 0;
+        for (int r = 0; r < matrix.size(); r++) {
+            for (int c = matrix.get(r).size() - 1; c >= 0; c--) {
+                if (matrix.get(r).get(c) >= 0) {
+                    break;
+                }
+                count++;
+            }
+        }
+        return count;
+    }
+
+}
