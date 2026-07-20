@@ -3,7 +3,7 @@ package module.one._1d_and_2d_array.lecture.day2;
 import java.util.Arrays;
 
 /**
- * Search an element in 2D array:
+ * Search an element in 2D array: [Leetcode 240. Search a 2D Matrix II]
  * Given a matrix where elements are sorted in row-wise and column-wise.
  * That is the element will be greater than or equal to previous row and column elements.
  * However, the last column element of previous row can be greater than the current column element of current row.

@@ -1,7 +1,7 @@
 package module.one._1d_and_2d_array.assignment;
 
 /**
- * Max Chunks Sorted Ii:
+ * Max Chunks Sorted Ii: [Leetcode 768. Max Chunks To Make Sorted II]
  * <p>
  * You are given an integer array arr.
  * We split arr into some number of chunks (i.e., partitions), and individually sort each chunk. After

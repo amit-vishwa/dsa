@@ -3,7 +3,7 @@ package module.one._1d_and_2d_array.assignment;
 import java.util.List;
 
 /**
- * Special Position Binary Matrix:
+ * Special Position Binary Matrix: [Leetcode 1582. Special Positions in a Binary Matrix]
  * Given an m x n binary matrix mat, return the number of special positions in mat.
  * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0
  * (rows and columns are 0-indexed).

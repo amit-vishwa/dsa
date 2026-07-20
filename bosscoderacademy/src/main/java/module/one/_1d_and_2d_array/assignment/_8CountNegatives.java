@@ -3,7 +3,7 @@ package module.one._1d_and_2d_array.assignment;
 import java.util.List;
 
 /**
- * Count Negative Number In Sorted Matrix:
+ * Count Negative Number In Sorted Matrix: [Leetcode 1351. Count Negative Numbers in a Sorted Matrix]
  * <p>
  * Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise,
  * return the number of negative numbers in grid.

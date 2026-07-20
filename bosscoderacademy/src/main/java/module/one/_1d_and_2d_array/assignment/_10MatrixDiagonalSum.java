@@ -3,7 +3,7 @@ package module.one._1d_and_2d_array.assignment;
 import java.util.List;
 
 /**
- * Matrix Diagonal Sum:
+ * Matrix Diagonal Sum: [Leetcode 1572. Matrix Diagonal Sum]
  *
  * Given a square matrix mat, return the sum of the matrix diagonals. Only include the sum of all the elements on
  * the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.

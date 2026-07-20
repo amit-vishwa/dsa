@@ -1,7 +1,7 @@
 package module.one._1d_and_2d_array.lecture.day2;
 
 /**
- * Max chunks to make the array sorted:
+ * Max chunks to make the array sorted: [Leetcode 769. Max Chunks To Make Sorted]
  * Given an array which may or may not be sorted with elements from 0 - (n-1).
  * Return the max chunks that we can create out of it, which should give a sorted array after merge.
  * <p>

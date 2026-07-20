@@ -1,7 +1,7 @@
 package module.one._1d_and_2d_array.lecture.day2;
 
 /**
- * Print Matrix Spirally:
+ * Print Matrix Spirally: [Leetcode 54. Spiral Matrix]
  * Given a matrix, print the elements spirally.
  * <p>
  * Only one approach is there which simply takes O(M*N) time complexity and O(1) space complexity.
