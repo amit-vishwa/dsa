@@ -2,12 +2,12 @@ package module.one.recursion.two.notes;
 
 /**
  * Number of ways to reach from source to destination with obstacles:
- * <p>
+ *
  * Given a maze with obstacles, count the number of paths to reach the rightmost-bottommost cell from the topmost-leftmost
  * cell. A cell in the given maze has a value of -1 if it is a blockage or dead-end, else 0.
- * <p>
+ *
  * From a given cell, we are allowed to move to cells (i+1, j) and (i, j+1) only.
- * <p>
+ *
  * Examples
  * Input: maze[R][C] =  {{0,  0, 0, 0}, {0, -1, 0, 0}, {-1, 0, 0, 0}, {0,  0, 0, 0}};
  * Output: 4
