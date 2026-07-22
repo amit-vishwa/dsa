@@ -1,7 +1,7 @@
 package module.one.recursion.one.notes;
 
 /**
- * The string is palindrome or not:
+ * The string is palindrome or not: [Leetcode 125. Valid Palindrome]
  * <p>
  * Given a string S, check if it is a palindrome or not. (A palindrome is a string that is the same from forward and backward.)
  * <p>

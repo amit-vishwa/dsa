@@ -1,7 +1,7 @@
 package module.one.recursion.two.lecture;
 
 /**
- * Return the power:
+ * Return the power: [Leetcode 50. Pow(x, n)]
  * <p>
  * Given a number num1 and num2, return the num1 raised to num2 value.
  * We have multiple approaches to solve this problem using recursion.

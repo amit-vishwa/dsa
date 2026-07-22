@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Duplicate array elements distinct permutations:
+ * Duplicate array elements distinct permutations: [Leetcode 47. Permutations II]
  * <p>
  * Given an array with duplicate elements, return the permutation list with distinct permutations.
  * The logic is simple, just skip calculating duplicate permutations.

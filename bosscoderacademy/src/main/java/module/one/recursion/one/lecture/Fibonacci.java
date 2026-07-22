@@ -1,7 +1,7 @@
 package module.one.recursion.one.lecture;
 
 /**
- * Find the Nth fibonacci number:
+ * Find the Nth fibonacci number: [Leetcode 509. Fibonacci Number]
  * <p>
  * The logic is simple, print the sum of num - 1 and num - 2 for all numbers from 0 till N.
  * If num is 0 or 1, just return the number.

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Find all permutations of distinct array:
+ * Find all permutations of distinct array: [Leetcode 46. Permutations]
  * <p>
  * Given an array with distinct elements, find all the distinct permutations.
  * We have multiple approaches to find all permutations.
