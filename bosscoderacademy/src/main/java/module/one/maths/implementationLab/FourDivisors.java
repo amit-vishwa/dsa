@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * [Leetcode 1390. Four Divisors]
  * Given an array, check each element and return the sum of its factors if factor count is 4 exactly.
  * Approaches:
  * 1. Bruteforce - simply iterate over array, find all factors for an element, check if list size is 4 then add them cumulatively.
