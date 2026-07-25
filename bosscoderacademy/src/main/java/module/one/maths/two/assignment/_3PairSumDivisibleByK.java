@@ -3,7 +3,7 @@ package module.one.maths.two.assignment;
 import java.util.HashMap;
 
 /**
- * Array Pair Divisible By K:
+ * Array Pair Divisible By K: [Leetcode 1497. Check If Array Pairs Are Divisible by k]
  * <p>
  * Given an array of integers arr of even length n and an integer k. We want to divide the array into exactly n / 2 pairs
  * such that the sum of each pair is divisible by k.

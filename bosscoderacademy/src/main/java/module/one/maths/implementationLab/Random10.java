@@ -3,6 +3,7 @@ package module.one.maths.implementationLab;
 import java.util.Random;
 
 /**
+ * [Leetcode 470. Implement Rand10() Using Rand7()]
  * Generate random 10 using random 7 function.
  * Refer other similar problems related to this from module.one.maths.one.lecture package.
  */

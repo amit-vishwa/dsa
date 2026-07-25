@@ -1,7 +1,7 @@
 package module.one.maths.two.assignment;
 
 /**
- * Factorial Trailing Zeroes:
+ * Factorial Trailing Zeroes: [Leetcode 172. Factorial Trailing Zeroes]
  * <p>
  * Given an integer n, return the number of trailing zeroes in n!.
  * Note that n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1.

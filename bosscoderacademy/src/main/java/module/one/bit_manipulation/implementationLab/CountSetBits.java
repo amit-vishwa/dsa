@@ -1,6 +1,7 @@
 package module.one.bit_manipulation.implementationLab;
 
 /**
+ * [Leetcode 191. Number of 1 Bits]
  * Count the number of set bits for given number.
  */
 public class CountSetBits {

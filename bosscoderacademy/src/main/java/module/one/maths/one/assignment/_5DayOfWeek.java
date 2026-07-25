@@ -1,7 +1,7 @@
 package module.one.maths.one.assignment;
 
 /**
- * Day Of The Week:
+ * Day Of The Week: [Leetcode 1185. Day of the Week]
  * <p>
  * Given a date, return the corresponding day of the week for that date. The input is given as three integers representing
  * the day, month and year respectively. Return the answer as one of the following values

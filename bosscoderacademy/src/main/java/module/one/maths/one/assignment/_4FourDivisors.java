@@ -1,7 +1,7 @@
 package module.one.maths.one.assignment;
 
 /**
- * Four Divisors:
+ * Four Divisors: [Leetcode 1390. Four Divisors]
  * <p>
  * Given an integer array nums, return the sum of divisors of the integers in that array that have exactly four divisors.
  * If there is no such integer in the array, return 0.

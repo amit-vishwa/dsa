@@ -3,7 +3,7 @@ package module.one.maths.one.assignment;
 import java.util.HashMap;
 
 /**
- * Number Of Good Pairs:
+ * Number Of Good Pairs: [Leetcode 1512. Number of Good Pairs]
  * <p>
  * Given an array of integers nums, return the number of good pairs.
  * A pair (i, j) is called good if nums[i] == nums[j] and i < j.

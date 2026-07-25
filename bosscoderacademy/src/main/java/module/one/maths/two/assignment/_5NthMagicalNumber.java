@@ -1,7 +1,7 @@
 package module.one.maths.two.assignment;
 
 /**
- * Nth Magical Number:
+ * Nth Magical Number: [Leetcode 878. Nth Magical Number]
  * <p>
  * A positive integer is magical if it is divisible by either a or b.
  * <p>
