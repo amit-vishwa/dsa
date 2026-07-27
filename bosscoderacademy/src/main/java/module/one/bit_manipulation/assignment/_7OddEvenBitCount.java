@@ -3,7 +3,7 @@ package module.one.bit_manipulation.assignment;
 import java.util.Arrays;
 
 /**
- * Number Of Even And Odd Bits:
+ * Number Of Even And Odd Bits: [Leetcode 2595. Number of Even and Odd Bits]
  * <p>
  * You are given a positive integer n.
  * Let even denote the number of even indices in the binary representation of n (0-indexed) with value 1.

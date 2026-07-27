@@ -3,7 +3,7 @@ package module.one.bit_manipulation.assignment;
 import java.util.Arrays;
 
 /**
- * Single Number 3:
+ * Single Number 3: [Leetcode 260. Single Number III]
  * <p>
  * The problem is similar to single number and single number 2 problems. Only the difference is here is that 2 distinct numbers
  * are there and rest numbers are repeated twice. So just return the 2 distinct numbers.

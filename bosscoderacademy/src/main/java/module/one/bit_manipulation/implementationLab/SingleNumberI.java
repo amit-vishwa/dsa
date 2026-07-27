@@ -1,7 +1,7 @@
 package module.one.bit_manipulation.implementationLab;
 
 /**
- * Single Number I:
+ * Single Number I: [Leetcode 136. Single Number]
  * <p>
  * Every number is present twice, only one number is present once, find that number.
  * Refer: _3SingleNumber.java file from notes for more details and approaches as we are using most optimal approach here.

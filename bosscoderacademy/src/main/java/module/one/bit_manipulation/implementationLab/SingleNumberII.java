@@ -1,7 +1,7 @@
 package module.one.bit_manipulation.implementationLab;
 
 /**
- * Single Number II:
+ * Single Number II: [Leetcode 137. Single Number II]
  * <p>
  * The problem is similar to single number but with variation, here numbers occurred thrice except 1 which we have to find.
  * Refer: _4SingleNumberII.java from notes for more information.

@@ -1,7 +1,7 @@
 package module.one.bit_manipulation.implementationLab;
 
 /**
- * Reverse the bit of given number.
+ * Reverse the bit of given number. [Leetcode 190. Reverse Bits]
  * <p>
  * Approach:
  * - The logic is simple here, we have to check bits of number from LSB to MSB.
