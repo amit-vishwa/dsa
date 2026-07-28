@@ -1,7 +1,7 @@
 package module.one.searching.implementationLab;
 
 /**
- * Find the index of the element:
+ * Find the index of the element: [Leetcode 162. Find Peak Element]
  * <p>
  * A peak element is an element which is greater than its neighbours.
  * So any element that is greater than its left and right neighbours is called as a peak element.
