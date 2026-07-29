@@ -1,7 +1,7 @@
 package module.one.searching.two.assignment;
 
 /**
- * Nth Digit:
+ * Nth Digit: [Leetcode 400. Nth Digit]
  * <p>
  * Given an integer n, return the nth digit of the infinite integer sequence [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...].
  * <p>

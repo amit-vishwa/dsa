@@ -1,7 +1,7 @@
 package module.one.searching.two.notes;
 
 /**
- * Smallest Good Base:
+ * Smallest Good Base: [Leetcode 483. Smallest Good Base]
  * <p>
  * Given an integer n represented as a string, return the smallest good base of n. We call k >= 2 a good base of n if all
  * digits of n base k are 1's.

@@ -3,7 +3,7 @@ package module.one.searching.two.lecture;
 import java.util.Arrays;
 
 /**
- * Magnetic force between two balls:
+ * Magnetic force between two balls: [Leetcode 1552. Magnetic Force Between Two Balls]
  * We have been provided with m number of balls and array of buckets placed at element position.
  * We have to find the maximum of minimum distance at which the balls can be placed.
  */

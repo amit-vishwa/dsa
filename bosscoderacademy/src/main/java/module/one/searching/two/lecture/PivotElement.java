@@ -1,7 +1,7 @@
 package module.one.searching.two.lecture;
 
 /**
- * Find pivot in rotated sorted array:
+ * Find pivot in rotated sorted array: [Leetcode 153. Find Minimum in Rotated Sorted Array]
  * Pivot is nothing but the minimum element in the array.
  * We have to return minimum element index, i.e. index of pivot element.
  */

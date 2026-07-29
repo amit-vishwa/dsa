@@ -1,6 +1,7 @@
 package module.one.searching.two.lecture;
 
 /**
+ * [Leetcode 33. Search in Rotated Sorted Array]
  * Find the given element in rotated sorted array:
  * Given a rotated array, find the index of the target element.
  * Example: arr = [30, 40, 50, 10, 20], target = 40, ans = 1.

@@ -1,7 +1,7 @@
 package module.one.searching.two.assignment;
 
 /**
- * Capacity To Ship Package:
+ * Capacity To Ship Package: [Leetcode 1011. Capacity To Ship Packages Within D Days]
  * <p>
  * A conveyor belt has packages that must be shipped from one port to another within D days.
  * The ith package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor

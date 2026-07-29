@@ -1,7 +1,7 @@
 package module.one.searching.two.lecture;
 
 /**
- * Max element in rotated array:
+ * Max element in rotated array: [Leetcode 154. Find Minimum in Rotated Sorted Array II]
  * Given a rotated array, we have to return the max element from that array.
  * <p>
  * Approaches:

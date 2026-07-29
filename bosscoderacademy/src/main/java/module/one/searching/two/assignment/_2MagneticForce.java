@@ -3,7 +3,7 @@ package module.one.searching.two.assignment;
 import java.util.Arrays;
 
 /**
- * Magnetic Force Between Balls:
+ * Magnetic Force Between Balls: [Leetcode 1552. Magnetic Force Between Two Balls]
  * <p>
  * In the universe Earth C-137, Rick discovered a special form of magnetic force between two balls if they are put in his
  * new invented basket. Rick has n empty baskets, the ith basket is at position[i], Morty has m balls and needs to
