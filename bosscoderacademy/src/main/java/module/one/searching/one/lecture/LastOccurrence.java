@@ -1,6 +1,7 @@
 package module.one.searching.one.lecture;
 
 /**
+ * [Leetcode 34. Find First and Last Position of Element in Sorted Array]
  * Last occurrence index of target:
  * Find the index of the last occurrence of the given target from given array.
  * We have two ways to solve this, linear search and binary search.

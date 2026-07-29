@@ -3,7 +3,7 @@ package module.one.searching.implementationLab;
 import java.util.Arrays;
 
 /**
- * Sorted matrix search:
+ * Sorted matrix search: [Leetcode 74. Search a 2D Matrix]
  * <p>
  * Given a 2D sorted array where elements are sorted i.e. each cell will be greater than its previous cell.
  * Return the index of the target element.

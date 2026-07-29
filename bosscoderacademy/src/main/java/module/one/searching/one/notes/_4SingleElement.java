@@ -1,7 +1,7 @@
 package module.one.searching.one.notes;
 
 /**
- * Single Element in a Sorted Array:
+ * Single Element in a Sorted Array: [Leetcode 540. Single Element in a Sorted Array]
  * <p>
  * You are given a sorted array consisting of only integers where every element appears exactly twice,
  * except for one element which appears exactly once. Return the single element that appears only once.

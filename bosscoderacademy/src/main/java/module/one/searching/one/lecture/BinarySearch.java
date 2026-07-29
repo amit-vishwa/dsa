@@ -1,7 +1,7 @@
 package module.one.searching.one.lecture;
 
 /**
- * Binary search:
+ * Binary search: [Leetcode 704. Binary Search]
  * - The algorithm consist of searching the given target in the array.
  * - We have to reduce the search space by half after each pass.
  * - This algorithm only works on sorted array, so it check if target is less or greater than mid-element.

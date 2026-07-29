@@ -1,7 +1,7 @@
 package module.one.searching.one.lecture;
 
 /**
- * Linear search:
+ * Linear search: [Leetcode 704. Binary Search]
  * - This search algorithm is simple.
  * - It's just a simple traversal over the array.
  * - It checks each element, it found target then returns index, else keep on searching till the end of the array.

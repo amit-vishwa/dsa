@@ -1,7 +1,7 @@
 package module.one.searching.implementationLab;
 
 /**
- * Smallest Good Base:
+ * Smallest Good Base: [Leetcode 483. Smallest Good Base]
  * Find the smallest good base of a given number.
  * Example: n = 13, res = 3 i.e. 13 base 3 is 111, which means after dividing 13 by 3 we get 111 as remainders.
  * In short all digits should be one if considered binary number system, but here number system can go from 2 to N-1.

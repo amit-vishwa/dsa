@@ -1,7 +1,7 @@
 package module.one.searching.one.notes;
 
 /**
- * Find pivot element in a rotated sorted array:
+ * Find pivot element in a rotated sorted array: [Leetcode 153. Find Minimum in Rotated Sorted Array]
  * <p>
  * Pivot element is nothing but the minimum element in the array.
  * Given the sorted rotated array nums of unique elements, return the minimum element of this array.

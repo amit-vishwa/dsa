@@ -1,7 +1,7 @@
 package module.one.searching.one.assignment;
 
 /**
- * Find Peak Element:
+ * Find Peak Element: [Leetcode 162. Find Peak Element]
  * <p>
  * A peak element is an element that is strictly greater than its neighbors.
  * Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks,

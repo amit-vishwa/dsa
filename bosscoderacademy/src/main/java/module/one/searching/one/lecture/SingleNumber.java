@@ -1,7 +1,7 @@
 package module.one.searching.one.lecture;
 
 /**
- * Single Number:
+ * Single Number: [Leetcode 540. Single Element in a Sorted Array]
  * - Given an array of duplicate elements where are numbers are present twice except one, return that number.
  * - This problem is already solve in bit manipulation session, with multiple approaches.
  * - That can be referred to get insights of this problem, here we have solved it with binary search only.

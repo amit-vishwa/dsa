@@ -1,7 +1,7 @@
 package module.one.searching.one.assignment;
 
 /**
- * Preimage Size Factorial:
+ * Preimage Size Factorial: [Leetcode 793. Preimage Size of Factorial Zeroes Function]
  * <p>
  * Let f(x) be the number of zeroes at the end of x!. Recall that x! = 1 * 2 * 3 * ... * x and by convention, 0! = 1.
  * For example, f(3) = 0 because 3! = 6 has no zeroes at the end, while f(11) = 2 because 11! = 39916800 has two zeroes
