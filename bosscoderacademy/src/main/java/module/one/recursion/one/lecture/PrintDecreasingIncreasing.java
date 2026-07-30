@@ -2,7 +2,7 @@ package module.one.recursion.one.lecture;
 
 /**
  * Print increasing and decreasing order:
- * <p>
+ *
  * The problem is a combination of problem print 1 to N and N to 1.
  * Time complexity: O(N) as we are simply printing before and after so same time taken here.
  * Space complexity: O(N) due to stack.
