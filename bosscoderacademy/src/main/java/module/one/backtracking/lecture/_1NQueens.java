@@ -1,7 +1,7 @@
 package module.one.backtracking.lecture;
 
 /**
- * Place N Queens:
+ * Place N Queens: [Leetcode 51. N-Queens]
  * <p>
  * Given N Queens, place them on the N*N board and print the board.
  * <p>
