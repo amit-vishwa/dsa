@@ -1,7 +1,7 @@
 package module.one.backtracking.notes;
 
 /**
- * Rat in a Maze:
+ * Rat in a Maze: [Equivalent Leetcode 980. Unique Paths III]
  * <p>
  * Consider a rat placed at (0, 0) in a square matrix of order N * N. It has to reach the destination at (N - 1, N - 1). Find all
  * possible paths that the rat can take to reach from source to destination. The directions in which the rat can move are 'U'(up),
