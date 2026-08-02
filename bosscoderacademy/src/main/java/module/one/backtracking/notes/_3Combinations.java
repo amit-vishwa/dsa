@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * Print all possible combinations of r elements in a given array of size n:
+ * Print all possible combinations of r elements in a given array of size n: [Leetcode 77. Combinations]
  * <p>
  * Given an array of size n, generate and print all possible combinations of r elements in the array.
  * <p>
