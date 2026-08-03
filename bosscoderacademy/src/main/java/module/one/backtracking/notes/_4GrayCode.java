@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gray Code:
+ * Gray Code: [Leetcode 89. Gray Code]
  * <p>
  * A Gray code is a list of all 2^n bit strings of length n, where any two successive strings differ in exactly one bit
  * (i.e., their Hamming distance is one).
