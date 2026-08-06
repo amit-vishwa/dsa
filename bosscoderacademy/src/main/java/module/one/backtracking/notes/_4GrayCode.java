@@ -5,11 +5,11 @@ import java.util.List;
 
 /**
  * Gray Code: [Leetcode 89. Gray Code]
- * <p>
+ *
  * A Gray code is a list of all 2^n bit strings of length n, where any two successive strings differ in exactly one bit
  * (i.e., their Hamming distance is one).
  * Your task is to create a Gray code for a given length n.
- * <p>
+ *
  * Example
  * Input: 2
  * Output: 00 01 11 10
