@@ -5,10 +5,10 @@ import java.util.List;
 
 /**
  * Palindrome Partitioning: [Leetcode 131. Palindrome Partitioning]
- * <p>
+ *
  * You are given a string s, and partition it in such a way that every substring is a palindrome. Return all such palindromic
  * partitions of s.
- * <p>
+ *
  * Example
  * Input: s = “aab”
  * Output: [ ["a", "a", "b"], ["aa", "b"] ]
