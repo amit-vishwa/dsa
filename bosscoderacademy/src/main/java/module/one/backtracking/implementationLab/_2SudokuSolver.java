@@ -1,7 +1,7 @@
 package module.one.backtracking.implementationLab;
 
 /**
- * Sudoku solver:
+ * Sudoku solver: [Leetcode 37. Sudoku Solver]
  * <p>
  * Given a Sudoku, write a program to solve it.
  * <p>

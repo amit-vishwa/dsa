@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Rat in a Maze:
+ * Rat in a Maze: [Equivalent Leetcode 980. Unique Paths III]
  * <p>
  * Given a Maze and Rat which is at the start of the Maze.
  * The Rat can move in all directions. There are some obstacles in the Maze that must be avoided by the Rat.
