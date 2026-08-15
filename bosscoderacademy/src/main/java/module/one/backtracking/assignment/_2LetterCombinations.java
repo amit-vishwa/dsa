@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
- * LeetCode 17. Letter Combinations of a Phone Number
+ * [LeetCode 17. Letter Combinations of a Phone Number]
  * Refer: https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
  */
 public class _2LetterCombinations {
