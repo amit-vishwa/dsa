@@ -3,7 +3,7 @@ package module.one.sorting.implementationLab;
 import java.util.Arrays;
 
 /**
- * Partition the Array:
+ * Partition the Array: [Leetcode 2161. Partition Array According to Given Pivot]
  * <p>
  * Give an array and a pivot, partition the array in such a way that elements less than or equal to pivot is placed on the
  * left side of the pivot in the array, and the elements greater than pivot comes right side of the pivot.
