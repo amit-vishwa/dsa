@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 /**
  * Partition the Array: [Leetcode 2161. Partition Array According to Given Pivot]
- * <p>
+ *
  * Give an array and a pivot, partition the array in such a way that elements less than or equal to pivot is placed on the
  * left side of the pivot in the array, and the elements greater than pivot comes right side of the pivot.
- * <p>
+ *
  * Input: arr = [4, 3, 2, 1, 6, 8, 7, 9, 5], pivot = 5
  * Output: arr = [4, 3, 2, 1, 5, 8, 7, 9, 6] or sorted array [1, 2, 3, 4, 5, 6, 7, 8, 9] is also valid.
  */
