@@ -6,10 +6,10 @@ import java.util.TreeMap;
 
 /**
  * Sort a, b and c:
- * <p>
+ *
  * Given an array containing elements a, b and c only in random order.
  * Place a at first then b and then c at last in the array.
- * <p>
+ *
  * Input: arr = ['a', 'a', 'c', 'b', 'c', 'a', 'c', 'b', 'b', 'c', 'a', 'b', 'a']
  * Output: arr = ['a', 'a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'c', 'c', 'c', 'c']
  */
